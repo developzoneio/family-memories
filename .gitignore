@@ -1,0 +1,41 @@
+
+# .NET
+**/bin/
+**/obj/
+**/TestResults/
+.vs/
+*.user
+*.suo
+
+# React / Node.js
+**/node_modules/
+**/dist/
+**/coverage/
+*.tsbuildinfo
+
+# Environment variables
+**/.env
+**/.env.*
+!**/.env.example
+
+# Local and production settings
+**/appsettings.Local.json
+**/appsettings.Production.json
+
+# Family images and private data
+storage/
+uploads/
+data/
+backups/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# IDE
+.idea/
+
+# Operating system
+.DS_Store
+Thumbs.db
