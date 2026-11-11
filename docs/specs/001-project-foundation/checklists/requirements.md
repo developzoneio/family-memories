@@ -1,8 +1,8 @@
 # SPEC-001 — Specification Review Checklist
 
 **Specification:** [spec.md](../spec.md)  
-**Review status:** Pending  
-**Review date:** Not yet reviewed
+**Review status:** Scope approved by maintainer; detailed checklist audit pending  
+**Review date:** 2026-11-11 (approval stated in chat)
 
 ## Quality gate: before technical plan
 
@@ -18,9 +18,9 @@
 
 ## Approval record
 
-- Reviewer: _Pending_
-- Decision: _Pending_
-- Date: _Pending_
-- Notes / requested amendments: _Pending_
+- Reviewer: Project maintainer (chat approval)
+- Decision: SPEC-001 approved; individual checklist attestations not assumed
+- Date: 2026-11-11
+- Notes / requested amendments: File status synced only; design-document reconciliation remains outstanding for plan approval.
 
 **Next artifact after approval:** `specs/001-project-foundation/plan.md`, followed by `tasks.md`.

@@ -3,8 +3,8 @@
 > **Project:** Family Memories  
 > **Milestone:** 1 — Foundation (proposed first increment)  
 > **Feature branch:** `001-project-foundation`  
-> **Status:** Draft — awaiting review  
-> **Version:** 0.1.0  
+> **Status:** Approved — project maintainer, 2026-11-11 (confirmed in chat)  
+> **Version:** 1.0.0 (approved baseline; requirements unchanged)  
 > **Created:** 2026-11-11  
 > **Specification owner:** Project maintainer
 
