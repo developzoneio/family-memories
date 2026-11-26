@@ -1,27 +1,28 @@
-# Family Memories — Spec-Driven Development
+# Family Memories — Documentation
 
-This package begins the SDD documentation repository. It contains the first *draft* specification, not implementation code.
+This folder holds the Spec-Driven Development (SDD) documents for Family Memories.
 
-## Structure
+> The **[SDD Document Register](SDD-DOCUMENT-REGISTER.md)** is the single source of truth for each document's status,
+> version and approval. This page is navigation only and records no status of its own.
 
-```text
-specs/
-└── 001-project-foundation/
-    ├── spec.md
-    └── checklists/
-        └── requirements.md
-```
+## Documents
 
-## Process
+| Area | Document | Purpose |
+|---|---|---|
+| Governance | [SDD-DOCUMENT-REGISTER.md](SDD-DOCUMENT-REGISTER.md) | Inventory, status, gates and open gaps for all SDD documents |
+| Product | [product/requirements.md](product/requirements.md) | Product requirements and scope baseline |
+| Architecture | [architecture/technical-design.md](architecture/technical-design.md) | Technical Design Document and Milestone 1 boundary |
+| Architecture | [architecture/backend-design.md](architecture/backend-design.md) | Backend architecture and stack |
+| Architecture | [architecture/frontend-design.md](architecture/frontend-design.md) | Frontend architecture and UI/UX constraints |
+| Decisions | [adr/README.md](adr/README.md) | Architecture Decision Records |
+| SPEC-001 | [specs/001-project-foundation/spec.md](specs/001-project-foundation/spec.md) | Project Foundation behavioral requirements |
+| SPEC-001 | [specs/001-project-foundation/plan.md](specs/001-project-foundation/plan.md) | Technical implementation plan |
+| SPEC-001 | [specs/001-project-foundation/tasks.md](specs/001-project-foundation/tasks.md) | Implementation task breakdown |
+| SPEC-001 | [specs/001-project-foundation/checklists/requirements.md](specs/001-project-foundation/checklists/requirements.md) | Specification review checklist |
 
-1. **Specify** — Write measurable requirements and acceptance scenarios in `spec.md`.
-2. **Clarify / approve** — Resolve open questions and approve the specification.
-3. **Plan** — Create `plan.md` with architecture, technologies, dependencies and ADRs.
-4. **Tasks** — Create `tasks.md` with small dependency-ordered tasks and associated tests.
-5. **Implement** — Create code and tests; verify against the spec; review and merge.
+## Conventions
 
-Each distinct product capability receives its own numbered spec rather than growing an unrelated spec.
-
-## Status
-
-`001-project-foundation` — Draft v0.1.0, pending scope confirmation and review.
+- Each product capability gets its own numbered folder under `docs/specs/` (DR-001).
+- The SDD workflow (Specify → Approve → Plan → Tasks → Implement/verify) is described in the
+  [root README](../README.md#sdd-workflow).
+- Whenever a document is created, renamed, approved or superseded, update the register in the same change.
