@@ -22,7 +22,7 @@ docs/
 │   ├── frontend-design.md          # empty placeholder
 │   └── technical-design.md         # empty placeholder
 ├── product/
-│   ├── requirements.md             # product baseline v0.1.0, draft; pending review
+│   ├── requirements.md             # product baseline v1.0.0, approved
 │   └── sources/
 │       └── family-memories-product-evidence.md  # ChatGPT evidence export (source record)
 └── adr/
@@ -56,7 +56,7 @@ local foundation. Local development needs no Azure account and no public exposur
   2026-11-11.
 - SPEC-002 Azure Deployment: **Draft**; follows SPEC-001.
 - `plan.md`: **Draft v0.1**; .NET/database/toolchain proposals require reconciliation.
-- Product Requirements: **Draft v0.1.0**, pending maintainer review (issue #2).
+- Product Requirements: **Approved v1.0.0** by maintainer (2026-11-27, issue #2, PR #34).
 - Backend Design, Frontend Design and Technical Design Document: **placeholder files exist but are empty
   (0 bytes)**; content has not been exported yet.
 - `tasks.md`: **Not started** (empty placeholder). Do not implement code from the draft plan.

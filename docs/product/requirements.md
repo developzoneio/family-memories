@@ -1,8 +1,9 @@
 # Family Memories — Product Requirements Baseline
 
 > **Document ID:** DES-001  
-> **Version:** 0.1.0  
-> **Status:** **Draft — pending maintainer review** (not approved)  
+> **Version:** 1.0.0  
+> **Status:** **Approved v1.0.0** — project maintainer, 2026-11-27 (stated in session; confirmed by merging
+> PR [#34](https://github.com/developzoneio/family-memories/pull/34))  
 > **Created:** 2026-11-27  
 > **Owner:** Project maintainer  
 > **Tracking:** GitHub issue [#2](https://github.com/developzoneio/family-memories/issues/2) (DES-001, DOC-01, GAP-08)
@@ -44,7 +45,7 @@ ChatGPT on 2026-11-27. ChatGPT reported that it could not reopen the complete
 conversation archive: it worked from visible maintainer excerpts and one SDD file, and could not read the original
 Backend Design sessions, the Technical Design Document, the interview option texts or the mockup images. Items marked
 Confirmed from P or U therefore rest on quoted excerpts, and the maintainer's review of this document is what ratifies
-them. Quotes below keep their original language.
+them. The maintainer approved this baseline as v1.0.0 on 2026-11-27. Quotes below keep their original language.
 
 ## 3. Product vision
 
@@ -196,3 +197,4 @@ them. Quotes below keep their original language.
 | 2026-11-27 | 0.1.0 | First baseline, drafted from the 2026-11-27 product-evidence export (EV: sources P, U, S, committed under `sources/`) and the approved or accepted repository documents. Includes maintainer decisions M on OQ-P02 (one family per deployment), OQ-P03 (Admin and Member roles), OQ-P04 (invite links) and OQ-P09 (photos only for now). Pending maintainer review. |
 | 2026-11-27 | 0.1.0 | Second round of maintainer decisions M, before review: OQ-P05 (a departed member's content stays), OQ-P10 (comments and reactions in scope, tagging out for now), OQ-P12 (JPEG, PNG, HEIC up to 25 MB) and OQ-P14 (Vietnamese UI, translation-ready). Version unchanged because 0.1.0 has not been reviewed yet. |
 | 2026-11-27 | 0.1.0 | Third round of maintainer decisions M, before review: OQ-P06 (no sharing outside the family), OQ-P11 (notifications and search in; photo date/location metadata and slideshows out for now), OQ-P13 (up to 50 members, about 10,000 photos a year) and OQ-P17 (milestones M3 auth → M4 upload → M5 timeline → M6 albums → M7 download). |
+| 2026-11-27 | 1.0.0 | Approved by the maintainer after review of PR #34. No content change from the reviewed draft. Open questions remain open and move to the specifications of the milestones they affect. |
