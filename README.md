@@ -9,12 +9,14 @@ docs/
 ├── README.md                       # navigation page for docs/
 ├── SDD-DOCUMENT-REGISTER.md        # living documentation inventory (status source of truth)
 ├── specs/
-│   └── 001-project-foundation/
-│       ├── spec.md                 # SPEC-001 v1.0.0, approved 2026-11-11
-│       ├── plan.md                 # draft v0.1; not approved
-│       ├── tasks.md                # empty placeholder; deferred until plan approval
-│       └── checklists/
-│           └── requirements.md     # approval recorded; audit items remain open
+│   ├── 001-project-foundation/
+│   │   ├── spec.md                 # SPEC-001 v1.1.0 (v1.0.0 approved; Azure amendment pending)
+│   │   ├── plan.md                 # draft v0.1; not approved
+│   │   ├── tasks.md                # empty placeholder; deferred until plan approval
+│   │   └── checklists/
+│   │       └── requirements.md     # approval recorded; audit items remain open
+│   └── 002-azure-deployment/
+│       └── spec.md                 # SPEC-002 v0.1.0, draft; not approved
 ├── architecture/
 │   ├── backend-design.md           # empty placeholder
 │   ├── frontend-design.md          # empty placeholder
@@ -22,7 +24,8 @@ docs/
 ├── product/
 │   └── requirements.md             # empty placeholder
 └── adr/
-    └── README.md                   # empty placeholder
+    ├── README.md                   # empty placeholder
+    └── ADR-001-azure-deployment-target.md  # accepted 2026-11-27
 ```
 
 See the register for the authoritative status of each file.
@@ -37,9 +40,19 @@ See the register for the authoritative status of each file.
 
 Whenever a document is generated, renamed, approved, or superseded, **update `docs/SDD-DOCUMENT-REGISTER.md` in the same change**. This does not happen automatically without a tool/agent following the policy.
 
-## Current Milestone 1 state (2026-11-26)
+## Deployment target
 
-- SPEC-001 v1.0.0: **Approved** by maintainer in chat (2026-11-11).
+Production runs on **Microsoft Azure** ([ADR-001](docs/adr/ADR-001-azure-deployment-target.md), replacing the earlier
+home self-hosting plan): Azure Static Web Apps for the React frontend, Azure App Service (Linux) for the API, Azure
+Database for PostgreSQL Flexible Server, and Azure Key Vault for secrets, provisioned manually in the Azure Portal.
+Deployment is specified in [SPEC-002](docs/specs/002-azure-deployment/spec.md) (draft) and is **not** part of the
+local foundation. Local development needs no Azure account and no public exposure. No Azure resources exist yet.
+
+## Current Milestone 1 state (2026-11-27)
+
+- SPEC-001: v1.0.0 **Approved** by maintainer in chat (2026-11-11); v1.1.0 Azure hosting amendment pending
+  confirmation.
+- SPEC-002 Azure Deployment: **Draft**; follows SPEC-001.
 - `plan.md`: **Draft v0.1**; .NET/database/toolchain proposals require reconciliation.
 - Product Requirements, Backend Design, Frontend Design and Technical Design Document: **placeholder files exist
   but are empty (0 bytes)**; content has not been exported yet.

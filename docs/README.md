@@ -15,10 +15,12 @@ This folder holds the Spec-Driven Development (SDD) documents for Family Memorie
 | Architecture | [architecture/backend-design.md](architecture/backend-design.md) | Backend architecture and stack |
 | Architecture | [architecture/frontend-design.md](architecture/frontend-design.md) | Frontend architecture and UI/UX constraints |
 | Decisions | [adr/README.md](adr/README.md) | Architecture Decision Records |
+| Decisions | [adr/ADR-001-azure-deployment-target.md](adr/ADR-001-azure-deployment-target.md) | Production deployment target: Azure |
 | SPEC-001 | [specs/001-project-foundation/spec.md](specs/001-project-foundation/spec.md) | Project Foundation behavioral requirements |
 | SPEC-001 | [specs/001-project-foundation/plan.md](specs/001-project-foundation/plan.md) | Technical implementation plan |
 | SPEC-001 | [specs/001-project-foundation/tasks.md](specs/001-project-foundation/tasks.md) | Implementation task breakdown |
 | SPEC-001 | [specs/001-project-foundation/checklists/requirements.md](specs/001-project-foundation/checklists/requirements.md) | Specification review checklist |
+| SPEC-002 | [specs/002-azure-deployment/spec.md](specs/002-azure-deployment/spec.md) | Azure deployment requirements |
 
 ## Conventions
 
