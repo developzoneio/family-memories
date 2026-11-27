@@ -23,4 +23,4 @@
 - Date: 2026-11-11
 - Notes / requested amendments: File status synced only; design-document reconciliation remains outstanding for plan approval.
 
-**Next artifact after approval:** `specs/001-project-foundation/plan.md`, followed by `tasks.md`.
+**Next artifact after approval:** `docs/specs/001-project-foundation/plan.md`, followed by `tasks.md`.

@@ -93,11 +93,17 @@ family-memories/
 │   ├── verify.sh
 │   └── verify.ps1                      # when Windows native is supported
 ├── .github/workflows/ci.yml
-└── specs/
-    └── 001-project-foundation/
-        ├── spec.md                     # approved behavioral requirements
-        ├── plan.md                     # this document
-        └── checklists/requirements.md
+└── docs/
+    ├── SDD-DOCUMENT-REGISTER.md        # SDD document inventory and status
+    ├── product/requirements.md
+    ├── architecture/                   # backend, frontend and technical design
+    ├── adr/
+    └── specs/
+        └── 001-project-foundation/
+            ├── spec.md                 # approved behavioral requirements
+            ├── plan.md                 # this document
+            ├── tasks.md
+            └── checklists/requirements.md
 ```
 
 The structure is illustrative until compared with the existing technical designs. Keep the number of projects minimal for this increment; do not add domain services, message queues, Redis, media services or object storage merely in anticipation of future specs.

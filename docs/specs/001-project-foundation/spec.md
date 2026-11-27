@@ -2,7 +2,7 @@
 
 > **Project:** Family Memories  
 > **Milestone:** 1 — Foundation (proposed first increment)  
-> **Feature branch:** `001-project-foundation`  
+> **Feature branch:** `feature/001-project-foundation`  
 > **Status:** Approved — project maintainer, 2026-11-11 (confirmed in chat)  
 > **Version:** 1.0.0 (approved baseline; requirements unchanged)  
 > **Created:** 2026-11-11  
@@ -185,7 +185,7 @@ These questions do not prevent reviewing the behavioral acceptance criteria. The
 
 SPEC-001 is complete only when:
 
-- [ ] Scope and acceptance scenarios are reviewed and approved.
+- [x] Scope and acceptance scenarios are reviewed and approved.
 - [ ] All open questions that block implementation are resolved or recorded in ADRs.
 - [ ] Every MUST requirement (FR/NFR) has test evidence, a review artifact, or an explicitly approved exception.
 - [ ] A clean-checkout setup demonstration passes (`AT-001`).
