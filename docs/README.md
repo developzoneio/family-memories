@@ -11,6 +11,7 @@ This folder holds the Spec-Driven Development (SDD) documents for Family Memorie
 |---|---|---|
 | Governance | [SDD-DOCUMENT-REGISTER.md](SDD-DOCUMENT-REGISTER.md) | Inventory, status, gates and open gaps for all SDD documents |
 | Product | [product/requirements.md](product/requirements.md) | Product requirements and scope baseline |
+| Product | [product/sources/family-memories-product-evidence.md](product/sources/family-memories-product-evidence.md) | Evidence export behind the product baseline (source record) |
 | Architecture | [architecture/technical-design.md](architecture/technical-design.md) | Technical Design Document and Milestone 1 boundary |
 | Architecture | [architecture/backend-design.md](architecture/backend-design.md) | Backend architecture and stack |
 | Architecture | [architecture/frontend-design.md](architecture/frontend-design.md) | Frontend architecture and UI/UX constraints |
