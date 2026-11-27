@@ -1,9 +1,10 @@
 # Family Memories — Product Requirements Baseline
 
 > **Document ID:** DES-001  
-> **Version:** 1.0.0  
+> **Version:** 1.0.1  
 > **Status:** **Approved v1.0.0** — project maintainer, 2026-11-27 (stated in session; confirmed by merging
-> PR [#34](https://github.com/developzoneio/family-memories/pull/34))  
+> PR [#34](https://github.com/developzoneio/family-memories/pull/34)). v1.0.1 correction (QLT-07) approved
+> 2026-11-27 (confirmed by merging PR #35)  
 > **Created:** 2026-11-27  
 > **Owner:** Project maintainer  
 > **Tracking:** GitHub issue [#2](https://github.com/developzoneio/family-memories/issues/2) (DES-001, DOC-01, GAP-08)
@@ -138,7 +139,7 @@ them. The maintainer approved this baseline as v1.0.0 on 2026-11-27. Quotes belo
 | QLT-04 | Production runs on **Microsoft Azure**: Static Web Apps (frontend), App Service on Linux (API), Azure Database for PostgreSQL Flexible Server, Key Vault (secrets), provisioned manually in the Portal. | Confirmed | ADR-001 |
 | QLT-05 | Azure has a recurring monthly cost, so a budget and cost alerts are needed. The interview answer on storage and operating cost was option A ("Câu 4. Lưu trữ hình ảnh và chi phí vận hành => A"), whose text was not recovered. | Confirmed (the need) / Open (budget, option A) | ADR-001 (Consequences); P; OQ-P07 |
 | QLT-06 | Large original-photo uploads will probably need direct-to-storage upload (for example Azure Blob Storage), because requests proxied through Static Web Apps are limited to 45 seconds. To be decided in a media specification. | Proposal | ADR-001 (Consequences) |
-| QLT-07 | The backend is built with ASP.NET Core/.NET. | Proposal | SPEC-001 §2 ("working proposal"); S |
+| QLT-07 | The backend is built with **ASP.NET Core on .NET 10**. Details are in the [Backend Design](../architecture/backend-design.md). | Confirmed | ADR-001 (Decision: "ASP.NET Core API"); Backend Design STK-01, STK-02 |
 | QLT-08 | The UI is in **Vietnamese** at launch. All UI text is kept in translation resources so that English (or another language) can be added later without code changes. | Confirmed | M (OQ-P14: "Vietnamese first, i18n-ready") |
 | QLT-09 | Supported browsers and devices, performance targets and accessibility (including for older relatives). | Open | OQ-P14 |
 
@@ -198,3 +199,4 @@ them. The maintainer approved this baseline as v1.0.0 on 2026-11-27. Quotes belo
 | 2026-11-27 | 0.1.0 | Second round of maintainer decisions M, before review: OQ-P05 (a departed member's content stays), OQ-P10 (comments and reactions in scope, tagging out for now), OQ-P12 (JPEG, PNG, HEIC up to 25 MB) and OQ-P14 (Vietnamese UI, translation-ready). Version unchanged because 0.1.0 has not been reviewed yet. |
 | 2026-11-27 | 0.1.0 | Third round of maintainer decisions M, before review: OQ-P06 (no sharing outside the family), OQ-P11 (notifications and search in; photo date/location metadata and slideshows out for now), OQ-P13 (up to 50 members, about 10,000 photos a year) and OQ-P17 (milestones M3 auth → M4 upload → M5 timeline → M6 albums → M7 download). |
 | 2026-11-27 | 1.0.0 | Approved by the maintainer after review of PR #34. No content change from the reviewed draft. Open questions remain open and move to the specifications of the milestones they affect. |
+| 2026-11-27 | 1.0.1 | Correction: QLT-07 relabeled from Proposal to Confirmed. ADR-001 (accepted) already names the ASP.NET Core API, and .NET 10 was decided in the Backend Design (issue #3). No other change. |
