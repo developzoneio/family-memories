@@ -3,8 +3,8 @@
 > **Document ID:** DES-001  
 > **Version:** 1.0.1  
 > **Status:** **Approved v1.0.0** — project maintainer, 2026-11-27 (stated in session; confirmed by merging
-> PR [#34](https://github.com/developzoneio/family-memories/pull/34)). v1.0.1 correction (QLT-07) pending approval
-> through the issue #3 pull request  
+> PR [#34](https://github.com/developzoneio/family-memories/pull/34)). v1.0.1 correction (QLT-07) approved
+> 2026-11-27 (confirmed by merging PR #35)  
 > **Created:** 2026-11-27  
 > **Owner:** Project maintainer  
 > **Tracking:** GitHub issue [#2](https://github.com/developzoneio/family-memories/issues/2) (DES-001, DOC-01, GAP-08)

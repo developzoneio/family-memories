@@ -1,8 +1,9 @@
 # Family Memories — Backend Design
 
 > **Document ID:** DES-002  
-> **Version:** 0.1.0  
-> **Status:** **Draft — pending maintainer review** (not approved)  
+> **Version:** 1.0.0  
+> **Status:** **Approved v1.0.0** — project maintainer, 2026-11-27 (stated in session; confirmed by merging
+> PR [#35](https://github.com/developzoneio/family-memories/pull/35))  
 > **Created:** 2026-11-27  
 > **Owner:** Project maintainer  
 > **Tracking:** GitHub issue [#3](https://github.com/developzoneio/family-memories/issues/3) (DES-002, DOC-02, GAP-03,
@@ -218,3 +219,4 @@ The maintainer's coding standards are project rules for all C# code. Summary:
 | Date | Version | Change |
 |---|---|---|
 | 2026-11-27 | 0.1.0 | First baseline from maintainer decisions in session (.NET 10; PostgreSQL 18 with EF Core 10 migrations; Clean Architecture; ASP.NET Core Identity; `/api/health/*` routes; extension-method exception CON-05), the maintainer's coding standards, ADR-001, SPEC-001 and the approved Product Requirements. Pending maintainer review. |
+| 2026-11-27 | 1.0.0 | Approved by the maintainer after review of PR #35. No content change from the reviewed draft. Open questions OQ-B01 … OQ-B08 move to the specifications named in Section 15. |

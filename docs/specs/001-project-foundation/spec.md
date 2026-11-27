@@ -3,8 +3,8 @@
 > **Project:** Family Memories  
 > **Milestone:** 1 — Foundation (proposed first increment)  
 > **Feature branch:** `feature/001-project-foundation`  
-> **Status:** v1.2.0 amendment **pending approval** (health routes moved under `/api`; issue #3). v1.1.0 approved
-> by the project maintainer 2026-11-27 (confirmed by merging PR #19); v1.0.0 approved 2026-11-11 (confirmed in
+> **Status:** Approved v1.2.0 — project maintainer, 2026-11-27 (health routes moved under `/api`; issue #3;
+> confirmed by merging PR #35). v1.1.0 approved 2026-11-27 (confirmed by merging PR #19); v1.0.0 approved 2026-11-11 (confirmed in
 > chat). v1.1.0 added the hosting amendment per [ADR-001](../../adr/ADR-001-azure-deployment-target.md)  
 > **Version:** 1.2.0 (health routes `/api/health/live` and `/api/health/ready`; other behavior unchanged)  
 > **Created:** 2026-11-11  
@@ -213,4 +213,4 @@ SPEC-001 is complete only when:
 | 2026-11-11 | 1.0.0 | Approved baseline. |
 | 2026-11-26 | 1.0.0 | Administrative fix: feature branch name, Definition of Done approval checkbox (issue #1). |
 | 2026-11-27 | 1.1.0 | Deployment target changed from home self-hosting to Azure per ADR-001: §2 context, FR-014, §8 exclusions, AT-011. NFR-002 (local-only development) unchanged. Azure work moved to SPEC-002. |
-| 2026-11-27 | 1.2.0 | Health routes moved from `/health/live` and `/health/ready` to `/api/health/live` and `/api/health/ready` (US-002 scenarios, FR-003, FR-004, §7), because Azure Static Web Apps forwards only `/api/*` to the API. Resolves SPEC-002 OQ-209 and GAP-12. Status semantics unchanged. Maintainer decision in session (issue #3); pending confirmation through PR merge. |
+| 2026-11-27 | 1.2.0 | Health routes moved from `/health/live` and `/health/ready` to `/api/health/live` and `/api/health/ready` (US-002 scenarios, FR-003, FR-004, §7), because Azure Static Web Apps forwards only `/api/*` to the API. Resolves SPEC-002 OQ-209 and GAP-12. Status semantics unchanged. Maintainer decision in session (issue #3); approved 2026-11-27, confirmed by merging PR #35. |

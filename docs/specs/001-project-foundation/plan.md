@@ -2,7 +2,7 @@
 
 > **Project:** Family Memories  
 > **Milestone:** 1 — Project Foundation & Local Development  
-> **Source of truth:** [`spec.md`](./spec.md) — SPEC-001 v1.2.0 (v1.1.0 approved 2026-11-27; v1.2.0 health-route amendment pending)  
+> **Source of truth:** [`spec.md`](./spec.md) — SPEC-001 v1.2.0, approved by the project maintainer on 2026-11-27 (PR #35)  
 > **Status:** Planning draft v0.1 — technical stack/assumptions require alignment with prior Backend and Frontend Designs  
 > **Last updated:** 2026-11-27  
 > **Planning rule:** Do not implement product features excluded by SPEC-001. Changes to observable requirements must be made in `spec.md` first.
