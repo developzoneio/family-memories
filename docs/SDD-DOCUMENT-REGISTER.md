@@ -1,7 +1,7 @@
 # Family Memories — SDD Document Register & Generation Checklist
 
 > **Document ID:** SDD-REG-001  
-> **Version:** 1.3.1  
+> **Version:** 1.4.0  
 > **Last updated:** 2026-11-27  
 > **Owner:** Project maintainer  
 > **Status:** Active — Step 2 reconciled (Reviewed with Open Gaps)  
@@ -49,24 +49,27 @@ This document is the **single inventory and generation checklist** for Family Me
 
 | ID | Document | Intended repository path | File presence | Review state | Why it matters |
 |---|---|---|---|---|---|
-| DES-001 | Product Requirements / Product Scope baseline | `docs/product/requirements.md` | **Placeholder (0 bytes)** | Partial Approved / Unverified | Product decisions exist in chat/SPEC-001, but no content in canonical file; full product baseline not verified. |
+| DES-001 | Product Requirements / Product Scope baseline | `docs/product/requirements.md` | Exists (content) | **Approved v1.0.0 — maintainer, 2026-11-27 (PR #34)** | Baseline drafted and approved 2026-11-27 (issue #2) from the ChatGPT product-evidence export (DES-006; partial coverage), approved/accepted repository documents and maintainer decisions in session (one family per deployment, Admin/Member roles, invite links, photos only for now, content kept after a member leaves, comments and reactions, JPEG/PNG/HEIC up to 25 MB, Vietnamese translation-ready UI, no sharing outside the family, notifications and search, up to 50 members and ~10,000 photos a year, milestones M3 auth → M4 upload → M5 timeline → M6 albums → M7 download). Every statement labeled Confirmed, Proposal or Open; 17 open questions (OQ-P01 … OQ-P17): 3 resolved, 9 partly resolved, 5 not started (OQ-P01, OQ-P07, OQ-P08, OQ-P15, OQ-P16). GAP-08 closed by this approval. |
+| DES-006 | Product-evidence export (source for DES-001) | `docs/product/sources/family-memories-product-evidence.md` | Exists (content) | Source record — not a requirements document | ChatGPT export dated 2026-11-27 with verbatim maintainer quotes and evidence IDs (PRD-A01 …). ChatGPT could not read the full chat archive; its Confirmed items rest on excerpts. Contains no family member personal data. Kept as provenance; do not edit except to add later evidence passes. |
 | DES-002 | **Backend Design** | `docs/architecture/backend-design.md` | **Placeholder (0 bytes)** | Unverified | Backend stack/architecture details require original discussion or supporting design source. Export must be reconciled with ADR-001 (original source assumed home hosting). |
 | DES-003 | **Frontend Design** | `docs/architecture/frontend-design.md` | **Placeholder (0 bytes)** | Partial Approved / Unverified | React and responsive browser mockup decisions recorded in chat; detailed technology and UX design need source reconciliation. |
 | DES-004 | **Technical Design Document (TDD)** | `docs/architecture/technical-design.md` | **Placeholder (0 bytes)** | Unverified | Original Milestone 1 scope and cross-cutting decisions not yet verified. Deployment sections superseded by ADR-001. |
 | DES-005 | UI/UX mockup specification or references | `docs/design/ui-ux-reference.md` | **Missing (chat only)** | Mockup approved in chat; file unverified | No confirmed canonical screenshot or reference file on this branch; do not invent one. |
 
-**Confirmed from prior project discussions, not from files:** React frontend, medium scale, family-scoped privacy, manual image upload, support for original and optimized image renditions. Exact backend version, DB engine, CSS/UI library, local OS, and CI provider remain **planning decisions pending reconciliation**, not settled by this register. The earlier "home self-hosting" decision is **superseded by ADR-001 (Azure, 2026-11-27)**.
+**Confirmed from prior project discussions, not from files:** React frontend, medium scale, family-scoped privacy, manual image upload, support for original and optimized image renditions. Exact backend version, DB engine, CSS/UI library, local OS, and CI provider remain **planning decisions pending reconciliation**, not settled by this register. The earlier "home self-hosting" decision is **superseded by ADR-001 (Azure, 2026-11-27)**. Product-level decisions, with their sources and open questions, are now recorded in the draft [Product Requirements baseline](product/requirements.md) (DES-001).
 
 ### Snapshot / status counts (remote GitHub branch, 2026-11-11)
 
-- **15 tracked files** on `feature/001-project-foundation` after the ADR-001 change: **9 nonempty** (README, docs/README, Document Register, SPEC-001, plan, checklist, ADR-001, SPEC-002, .gitignore) and **6 zero-byte placeholders** (Product, Backend, Frontend, Technical Design, ADR README, tasks).
+- **16 tracked files** on `feature/001-project-foundation` after the Product Requirements change (issue #2): **11 nonempty** (README, docs/README, Document Register, SPEC-001, plan, checklist, ADR-001, SPEC-002, Product Requirements, product-evidence export, .gitignore) and **5 zero-byte placeholders** (Backend, Frontend, Technical Design, ADR README, tasks).
 - **1 accepted ADR** (ADR-001 Azure deployment target) and **1 draft specification** (SPEC-002, not approved).
-- **1 approved requirements specification** (SPEC-001 v1.0.0; approval recorded, checklist audit pending).
+- **1 approved requirements specification** (SPEC-001 v1.1.0; approval recorded, checklist audit pending).
 - **1 draft technical plan** (`plan.md`, not approved).
-- **4 empty canonical product/architecture source files**; the approved UI/UX mockup is not verified as a canonical repository reference.
+- **1 approved product baseline** (Product Requirements v1.0.0, approved 2026-11-27).
+- **3 empty canonical architecture source files** (Backend, Frontend, Technical Design); the approved UI/UX mockup is not verified as a canonical repository reference.
 - **1 empty tasks placeholder** and **1 missing verification report**; ADRs are conditional and no substantive ADR exists.
 - **Phase 1 — Foundation Inventory / Step 2: Document Reconciliation**: **Completed — Reviewed with Open Gaps**, approved by project maintainer on 2026-11-11. No gaps closed by this review.
 - **2026-11-26:** GAP-01 and GAP-02 closed by issue #1 (documentation paths and status metadata only). GAP-03 … GAP-11 remain open.
+- **2026-11-27:** GAP-08 closed by issue #2 (Product Requirements baseline v1.0.0 approved).
 
 ## 3. Milestone 1 readiness checklist
 
@@ -192,7 +195,7 @@ This sequence avoids instructing Codex to reconcile against nonexistent local fi
 
 | ID | Document | GitHub evidence | Review classification | Outstanding action |
 |---|---|---|---|---|
-| DOC-01 | Product Requirements | `docs/product/requirements.md` (0 bytes) | Partial Approved / Unverified | Reconcile product decisions with original source |
+| DOC-01 | Product Requirements | `docs/product/requirements.md` (content) | Approved v1.0.0 (2026-11-27, PR #34) | Carry the remaining open questions (OQ-P01 … OQ-P17) into the milestone specifications they affect |
 | DOC-02 | Backend Design | `docs/architecture/backend-design.md` (0 bytes) | Unverified | Verify architecture/stack from full design source |
 | DOC-03 | Frontend Design | `docs/architecture/frontend-design.md` (0 bytes) | Partial Approved / Unverified | Preserve approved React/browser mockup; verify detailed choices |
 | DOC-04 | Technical Design | `docs/architecture/technical-design.md` (0 bytes) | Unverified | Verify original Milestone 1 boundary |
@@ -208,7 +211,7 @@ This sequence avoids instructing Codex to reconcile against nonexistent local fi
 | DOC-14 | ADR-001 Azure deployment target | `docs/adr/ADR-001-azure-deployment-target.md` (content) | Accepted 2026-11-27 | Maintainer to fill in rationale |
 | DOC-15 | SPEC-002 Azure Deployment | `docs/specs/002-azure-deployment/spec.md` (content) | Draft v0.1.0 | Resolve OQ-201 … OQ-209; approve before any Azure spend |
 
-### Remaining Gaps — GAP-01 and GAP-02 closed; all others OPEN
+### Remaining Gaps — GAP-01, GAP-02 and GAP-08 closed; all others OPEN
 
 Each gap is tracked as a GitHub issue; see tracking issue
 [#17](https://github.com/developzoneio/family-memories/issues/17) for the gap-to-issue mapping.
@@ -222,7 +225,7 @@ Each gap is tracked as a GitHub issue; see tracking issue
 | GAP-05 | P0 | TDD Milestone 1 scope (OQ-001) not verified against SPEC-001 | Explicit boundary agreement or documented discrepancy |
 | GAP-06 | P1 | Backend stack choices (OQ-002) not verified | Source-backed .NET, database and migration decision |
 | GAP-07 | P1 | Development OS, local infrastructure and CI choices (OQ-003–OQ-005) pending | Explicit approved choices/assumptions |
-| GAP-08 | P1 | Product Requirements baseline is an empty placeholder | Product decisions exported and reviewed without inventing details |
+| GAP-08 | P1 | **Closed — 2026-11-27.** Product Requirements baseline is an empty placeholder | Baseline exported with every statement labeled and sourced, reviewed and approved as v1.0.0 by the maintainer ([#2](https://github.com/developzoneio/family-memories/issues/2), PR #34) |
 | GAP-09 | P1 | SPEC-001 checklist audit is incomplete | Audit evidence for unchecked criteria |
 | GAP-10 | P2 | UI/UX reference provenance and ADR location/use are unresolved | Verified references and conditional ADR policy |
 | GAP-11 | Deferred | Tasks, implementation and acceptance verification are not started | Authorized later SDD gates; no work in this review |
@@ -233,7 +236,7 @@ Each gap is tracked as a GitHub issue; see tracking issue
 
 **Source limitations:** GitHub file existence and content were checked directly. Prior chat decisions were available through Project conversation context and a Project SDD snapshot; complete earlier Backend/Frontend/Technical Design transcripts were not independently validated during this review. Consequently, source-dependent technical details remain Unverified.
 
-**Remediation boundary:** This synchronization records the approval and current evidence; it does not close GAP-01 through GAP-11, revise architecture, edit technical plan, fill empty placeholders, create files, or advance the workflow. (Later update: GAP-01/GAP-02 were closed on 2026-11-26 by issue #1; see Section 8.)
+**Remediation boundary:** This synchronization records the approval and current evidence; it does not close GAP-01 through GAP-11, revise architecture, edit technical plan, fill empty placeholders, create files, or advance the workflow. (Later updates: GAP-01/GAP-02 were closed on 2026-11-26 by issue #1, and GAP-08 on 2026-11-27 by issue #2; see Section 8.)
 
 ## 8. Change history
 
@@ -244,4 +247,5 @@ Each gap is tracked as a GitHub issue; see tracking issue
 | 2026-11-26 | 1.2.0 | Closed GAP-01/GAP-02: fixed legacy `specs/` paths (root README, `docs/README.md`, checklist, plan section 4 tree); rewrote `docs/README.md` as a navigation page (GOV-003); synced root README status; administrative SPEC-001 fixes (branch name, approval checkbox) with version kept at 1.0.0; linked tracking issue #17. | GitHub issue #1; maintainer decisions in session (navigation page, no spec version bump, fix plan tree in #1). |
 | 2026-11-27 | 1.3.0 | Added ADR-001 (Azure replaces home self-hosting; accepted) and SPEC-002 Azure Deployment (draft v0.1.0). Amended SPEC-001 to v1.1.0 (§2, FR-014, §8, AT-011; pending confirmation through PR merge); updated draft plan (hosting context row, AT-011, R-005); added DR-003, GAP-12, GAP-13 and a Gate B item; superseded "home self-hosting" in confirmed context. | Maintainer decisions in session 2026-11-27: Azure replaces home; new SPEC-002; App Service + Static Web Apps + PostgreSQL Flexible Server + Key Vault; manual Portal provisioning. |
 | 2026-11-27 | 1.3.1 | Recorded SPEC-001 v1.1.0 as approved: the maintainer merged PR #19, which is the confirmation step stated in 1.3.0. Updated the SPEC-001 header, SDD-001, DOC-05 and the root README; the scope-approval DoD box now applies to v1.1.0. No requirement change. Restored chronological order of history rows. | PR #19 merged 2026-11-27 by the maintainer; maintainer decision in session 2026-11-27. |
+| 2026-11-27 | 1.4.0 | Added the Product Requirements baseline (DES-001, issue #2), approved by the maintainer as v1.0.0: every statement labeled Confirmed, Proposal or Open with its source; open questions OQ-P01 … OQ-P17, with maintainer decisions on OQ-P02 … OQ-P06, OQ-P09 … OQ-P14 and OQ-P17. Added the product-evidence export as DES-006. Updated DES-001 and DOC-01, closed GAP-08, updated status counts, the root README and `docs/README.md`. Corrected the SPEC-001 version in the status counts (v1.0.0 to v1.1.0) and the stale SPEC-001 line in the root README. | Maintainer request and decisions in session 2026-11-27; ChatGPT product-evidence export dated 2026-11-27 supplied by the maintainer (partial coverage), committed at the maintainer's request; approval of v1.0.0 stated in session and confirmed by merging PR #34. |
 
