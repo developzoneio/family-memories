@@ -3,8 +3,9 @@
 > **Project:** Family Memories  
 > **Milestone:** 1 — Foundation (proposed first increment)  
 > **Feature branch:** `feature/001-project-foundation`  
-> **Status:** Approved v1.0.0 — project maintainer, 2026-11-11 (confirmed in chat). v1.1.0 hosting amendment per
-> [ADR-001](../../adr/ADR-001-azure-deployment-target.md) — pending maintainer confirmation in PR review  
+> **Status:** Approved v1.1.0 — project maintainer, 2026-11-27 (confirmed by merging PR #19). v1.0.0 approved
+> 2026-11-11 (confirmed in chat); v1.1.0 adds the hosting amendment per
+> [ADR-001](../../adr/ADR-001-azure-deployment-target.md)  
 > **Version:** 1.1.0 (deployment target changed to Azure; local-foundation behavior unchanged)  
 > **Created:** 2026-11-11  
 > **Specification owner:** Project maintainer
