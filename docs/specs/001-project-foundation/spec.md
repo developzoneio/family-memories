@@ -3,8 +3,9 @@
 > **Project:** Family Memories  
 > **Milestone:** 1 — Foundation (proposed first increment)  
 > **Feature branch:** `feature/001-project-foundation`  
-> **Status:** Approved — project maintainer, 2026-11-11 (confirmed in chat)  
-> **Version:** 1.0.0 (approved baseline; requirements unchanged)  
+> **Status:** Approved v1.0.0 — project maintainer, 2026-11-11 (confirmed in chat). v1.1.0 hosting amendment per
+> [ADR-001](../../adr/ADR-001-azure-deployment-target.md) — pending maintainer confirmation in PR review  
+> **Version:** 1.1.0 (deployment target changed to Azure; local-foundation behavior unchanged)  
 > **Created:** 2026-11-11  
 > **Specification owner:** Project maintainer
 
@@ -20,7 +21,9 @@ The following decisions are inherited from prior Family Memories planning, not n
 
 - **Product:** private family photo-sharing web application.
 - **Frontend:** React, usable in desktop and mobile browsers; this is not a native mobile app.
-- **Deployment target:** self-hosted at home.
+- **Deployment target:** Microsoft Azure (changed 2026-11-27 by [ADR-001](../../adr/ADR-001-azure-deployment-target.md);
+  previously self-hosted at home). Azure provisioning and deployment are specified in
+  [SPEC-002](../002-azure-deployment/spec.md), not here.
 - **Expected scale:** medium.
 - **Visibility model:** family-scoped content.
 - **Photo behavior in the eventual product:** manual upload and support for original and optimized renditions.
@@ -108,7 +111,7 @@ All MUST requirements are in scope for acceptance of SPEC-001.
 | FR-011 | Frontend/backend service failures MUST be diagnosable without leaking secrets or crashing the basic frontend shell. | US-001, US-004 |
 | FR-012 | The repository MUST expose documented local validation commands for frontend, backend, and automated tests. | US-005 |
 | FR-013 | CI MUST execute the defined baseline checks on changes proposed for merging and report a failing status on a failed check. | US-005 |
-| FR-014 | Documentation MUST describe how local infrastructure relates to the intended self-hosted home deployment, but production deployment itself is not implemented in this specification. | US-001 |
+| FR-014 | Documentation MUST describe how local infrastructure relates to the intended Azure deployment (SPEC-002), but production deployment itself is not implemented in this specification. | US-001 |
 
 ## 6. Nonfunctional and security requirements
 
@@ -141,7 +144,7 @@ Health payloads SHOULD use a minimal shape such as `{ "status": "healthy" }` or 
 
 **Included:** project bootstrap, local development, API health/readiness, database initialization/migrations, responsive shell, configuration safety, minimal test harness, CI verification, and operational setup documentation.
 
-**Excluded:** login, user registration, family creation/invites, role enforcement, timeline/posts, albums, media upload/optimization/download, object storage integration, notifications, external sharing, backup automation, domain/TLS/reverse-proxy configuration, production release, and real family data migration.
+**Excluded:** login, user registration, family creation/invites, role enforcement, timeline/posts, albums, media upload/optimization/download, object storage integration, notifications, external sharing, backup automation, domain/TLS/reverse-proxy configuration, Azure resource provisioning and deployment (SPEC-002), production release, and real family data migration.
 
 The exclusion of media and authorization features does **not** weaken the project's family-private product requirement: no actual family content is managed in this foundation increment.
 
@@ -159,7 +162,7 @@ The exclusion of media and authorization features does **not** weaken the projec
 | AT-008 | Verify unimplemented operations are plainly disabled/labeled and don't persist data | FR-010 |
 | AT-009 | Stop backend; verify frontend shell remains viewable and status is understandable | FR-011 |
 | AT-010 | Run documented local checks and CI; introduce intentional failed test and observe CI fail | FR-012, FR-013 |
-| AT-011 | Verify dev setup requires no public router forwarding and README explains future home-hosted deployment boundary | FR-014, NFR-002 |
+| AT-011 | Verify dev setup requires no public exposure or router forwarding and README explains the future Azure deployment boundary (SPEC-002) | FR-014, NFR-002 |
 
 ## 10. Dependencies and assumptions
 
@@ -201,3 +204,11 @@ SPEC-001 is complete only when:
 - Technical choices that preserve requirements belong in `plan.md` / ADRs.
 - New user-facing capabilities (authentication, albums, uploads, etc.) require their own numbered specification(s).
 - Approval changes `Status` to **Approved** and records the approval date/reviewer in the PR; until then this document is a proposal, not authorization to implement.
+
+## 14. Revision history
+
+| Date | Version | Change |
+|---|---|---|
+| 2026-11-11 | 1.0.0 | Approved baseline. |
+| 2026-11-26 | 1.0.0 | Administrative fix: feature branch name, Definition of Done approval checkbox (issue #1). |
+| 2026-11-27 | 1.1.0 | Deployment target changed from home self-hosting to Azure per ADR-001: §2 context, FR-014, §8 exclusions, AT-011. NFR-002 (local-only development) unchanged. Azure work moved to SPEC-002. |

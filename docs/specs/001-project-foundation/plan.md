@@ -4,7 +4,7 @@
 > **Milestone:** 1 — Project Foundation & Local Development  
 > **Source of truth:** [`spec.md`](./spec.md) — SPEC-001, approved by project maintainer on 2026-11-11  
 > **Status:** Planning draft v0.1 — technical stack/assumptions require alignment with prior Backend and Frontend Designs  
-> **Last updated:** 2026-11-11  
+> **Last updated:** 2026-11-27  
 > **Planning rule:** Do not implement product features excluded by SPEC-001. Changes to observable requirements must be made in `spec.md` first.
 
 ## 1. Goal and boundaries
@@ -31,6 +31,7 @@ These are engineering proposals, not decisions established by SPEC-001. Check th
 | CI | GitHub Actions | Pull-request checks without personal credentials. |
 | Backend tests | xUnit and ASP.NET Core integration-test tooling | Tests for status semantics, readiness failure, and no sensitive output. |
 | Frontend tests | Vitest / React Testing Library; Playwright browser smoke tests | Validate placeholder behavior, outage resilience and 360/1280 layouts. |
+| Production hosting (context only) | Microsoft Azure — decided in ADR-001; specified in SPEC-002 | Not built in SPEC-001. Keep choices compatible: Azure Database for PostgreSQL Flexible Server supports PostgreSQL 17, App Service on Linux offers .NET 10 (LTS), and Static Web Apps proxies a linked API only under `/api`. |
 
 **Version policy:** lock SDK/toolchain versions in tracked manifests (`global.json`, frontend lockfile, image major/digest as appropriate); use current security patches. Do not infer precise packages from this draft until version compatibility is checked.
 
@@ -157,7 +158,7 @@ Ports/URLs are provisional until implementation; suggested loopback defaults: UI
 | AT-008 | Test placeholder labels/disabled actions; no simulated writes | FR-010 |
 | AT-009 | Backend-off browser test; shell stays visible and shows safe status | FR-011 |
 | AT-010 | Backend build/test/format, frontend lint/typecheck/test/build, browser smoke, CI failure injection | FR-012, FR-013 |
-| AT-011 | Docs review: no public port-forwarding required; self-hosted home target clearly future work | FR-014, NFR-002 |
+| AT-011 | Docs review: no public exposure or port-forwarding required; Azure deployment (SPEC-002) clearly future work | FR-014, NFR-002 |
 
 For integration tests, use a disposable test database or container and isolate test state. Avoid relying on any maintainer's real data, production server or secrets.
 
@@ -197,6 +198,7 @@ These are planning slices, **not executable tasks**. Generate `tasks.md` only af
 | R-002 | Commit of secrets or private photos | `.gitignore`, examples only, secret scan and fixture audit. |
 | R-003 | CI passes while clean-machine startup fails | Run separate documented clean-checkout acceptance on supported OS. |
 | R-004 | Overengineering foundation with future product modules | Defer domain model, authorization and object storage to subsequent specs. |
+| R-005 | Local foundation choices that do not carry over to Azure (ADR-001) | Resolve SPEC-002 OQ-209 (SPEC-001 `/health/*` routes versus the SWA `/api/*` proxy) before implementing the health endpoints and the Vite proxy path; read all configuration from environment variables so App Service settings and Key Vault references work unchanged; keep migrations as an explicit command that can run against Azure. |
 
 ### Approval gate for this plan
 
