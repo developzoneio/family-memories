@@ -36,7 +36,7 @@ known, the details are listed as Open.
 | ADR-001 | [ADR-001 Azure deployment target](../adr/ADR-001-azure-deployment-target.md) | Accepted, 2026-11-27 | Maintainer decision. |
 | SPEC-002 | [SPEC-002 Azure Deployment](../specs/002-azure-deployment/spec.md) | Draft v0.1.0 | Not approved. Supports **Proposal** labels only. |
 | PLAN-001 | [SPEC-001 technical plan](../specs/001-project-foundation/plan.md) | Draft v0.1 | Not approved. Supports **Proposal** labels only. |
-| M | Maintainer decisions in the Claude Code session that drafted this document | 2026-11-27 | Answers to OQ-P02, OQ-P03, OQ-P04, OQ-P05, OQ-P09, OQ-P10, OQ-P12 and OQ-P14, chosen from offered options. The option wording is quoted in the rows that cite M. |
+| M | Maintainer decisions in the Claude Code session that drafted this document | 2026-11-27 | Answers to OQ-P02 … OQ-P06, OQ-P09 … OQ-P14 and OQ-P17, chosen from offered options. The option wording is quoted in the rows that cite M. |
 | EV | [Product-evidence export](sources/family-memories-product-evidence.md) | 2026-11-27 | ChatGPT export with verbatim quotes for P, U and S. Evidence IDs such as PRD-F02 refer to this file. |
 
 **Source limitation.** Sources P, U and S were recovered through the product-evidence export (EV), produced by
@@ -89,7 +89,7 @@ them. Quotes below keep their original language.
 | PRV-02 | **No real family data** may be deployed to Azure until an authentication and authorization specification is approved and implemented. | Confirmed | ADR-001 (Consequences); SPEC-002 §9 |
 | PRV-03 | No real family member accounts, private photos or secrets appear in source control, test fixtures, screenshots or logs. | Confirmed | SPEC-001 NFR-001 |
 | PRV-04 | Because photos are stored in a public cloud, the privacy model must cover the **Azure region (data residency), encryption, access control, and who can administer the Azure subscription**. The specific answers are Open. | Confirmed (the need) / Open (the answers) | ADR-001 (Consequences); SPEC-002 OQ-201; OQ-P15 |
-| PRV-05 | Sharing content with people outside the family (for example public links). The interview answer on sharing and access control was option C ("Câu 3. Cách thức chia sẻ và kiểm soát quyền truy cập => C"), whose text was not recovered. External sharing is excluded from SPEC-001 only. | Open | P; SPEC-001 §8; OQ-P06 |
+| PRV-05 | Content is **never shared outside the family**: there are no public links, guest links or guest accounts. Anyone who needs to see content must be invited as a member (FAM-03). This decision replaces whatever interview option C ("Câu 3. Cách thức chia sẻ và kiểm soát quyền truy cập => C") said; that option's text was not recovered. | Confirmed | M (OQ-P06: "Never, family only"); P |
 | PRV-06 | Visibility finer than the family (per album, per post or per member). | Open | OQ-P06 |
 | PRV-07 | Deletion and retention of content and accounts, backups and recovery expectations, and privacy of photo metadata such as location. | Open | OQ-P15 |
 
@@ -109,7 +109,9 @@ them. Quotes below keep their original language.
 | CAP-10 | **Photos only** in the first media specification. Video is a possible later capability, not a permanent non-goal. | Confirmed | M (OQ-P09: "Photos only now") | When, or whether, video is added. |
 | CAP-11 | **Comments**: members can comment on a photo post. | Confirmed | M (OQ-P10) | Editing and deleting comments, and whether an Admin can remove them. |
 | CAP-12 | **Reactions**: members can react to a photo post. | Confirmed | M (OQ-P10) | A single "like" or a small set of emoji. |
-| CAP-13 | Search; notifications; face recognition; location and other photo metadata; slideshows; printing or photo books; duplicate detection and moderation; automatic camera-roll sync. | Open | — | Neither included nor excluded (OQ-P11). |
+| CAP-13 | **Notifications** about new posts, comments and reactions, in-app first. | Confirmed | M (OQ-P11) | Email or push channels; member preferences. |
+| CAP-14 | **Search and filter** photos by date, album or uploader. | Confirmed | M (OQ-P11) | Search scope and result ordering. |
+| CAP-15 | Face recognition; printing or photo books; duplicate detection and moderation; automatic camera-roll sync. | Open | — | Not asked yet; neither included nor excluded (OQ-P11). |
 
 ## 8. Out of scope
 
@@ -117,16 +119,19 @@ them. Quotes below keep their original language.
 |---|---|---|---|
 | OUT-01 | A **native mobile app** is not part of the product; phones use the web application in a mobile browser. This records the current design; no decision was found about a native app in the far future. | Confirmed | U: "I mean user will open the web app in mobile brower, not create the native app"; SPEC-001 §2 |
 | OUT-02 | **Home self-hosting** is no longer a deployment target. | Confirmed | ADR-001 (see Section 13) |
-| OUT-03 | The exclusions in SPEC-001 §8 and SPEC-002 §6 bound **those increments only**. Several excluded items are Confirmed later capabilities (CAP-01 … CAP-09); the others, such as external sharing and notifications, are Open. | Confirmed | SPEC-001 §2, §8, §13; SPEC-002 §6 |
+| OUT-03 | The exclusions in SPEC-001 §8 and SPEC-002 §6 bound **those increments only**. Several excluded items are Confirmed later capabilities (for example uploads, albums and notifications); external sharing is now a product non-goal (OUT-07). | Confirmed | SPEC-001 §2, §8, §13; SPEC-002 §6 |
 | OUT-04 | **Hosting several families in one deployment** is out of scope (FAM-01). | Confirmed | M (OQ-P02) |
 | OUT-05 | **Tagging people** in photos or posts is out of scope for now. It was not chosen with comments and reactions, and can be revisited by a new decision. | Confirmed | M (OQ-P10) |
-| OUT-06 | Any other permanent product exclusion. None was recorded; features without a decision stay Open (CAP-13) rather than out of scope. Video is deferred, not excluded (CAP-10). | Open | — |
+| OUT-06 | **Reading capture date and location from photo metadata** to sort or display photos, and **slideshows**, are out of scope for now. They were offered with notifications and search and not chosen; they can be revisited by a new decision. | Confirmed | M (OQ-P11) |
+| OUT-07 | **Sharing outside the family** (public links, guest links, guest accounts) is a product non-goal (PRV-05). | Confirmed | M (OQ-P06) |
+| OUT-08 | Any other permanent product exclusion. None was recorded; features without a decision stay Open (CAP-15) rather than out of scope. Video is deferred, not excluded (CAP-10). | Open | — |
 
 ## 9. Quality expectations and constraints
 
 | ID | Statement | Label | Source |
 |---|---|---|---|
-| QLT-01 | The system is sized for **medium scale** ("Quy mô: medium"). The numbers behind it (users, families, photos, storage) are Open. | Confirmed (category) / Open (numbers) | P; SPEC-001 §2; OQ-P13 |
+| QLT-01 | The system is sized for **medium scale** ("Quy mô: medium"), defined as **up to 50 members** in the one family and **about 10,000 photos a year**, with few members online at the same time. | Confirmed | P; SPEC-001 §2; M (OQ-P13: "Up to 50 members, ~10k photos/yr") |
+| QLT-01a | At typical phone photo sizes this is roughly **40–60 GB of originals a year**, plus the optimized renditions. This is a planning estimate, not a measured figure. | Proposal | This document; derived from QLT-01 |
 | QLT-02 | The frontend is built with **React** ("Frontend: react"). | Confirmed | P; SPEC-001 §2 |
 | QLT-03 | The UI is **responsive** and usable in desktop and mobile browsers. For the foundation shell this is tested at 360 and 1280 CSS px. | Confirmed | U; SPEC-001 NFR-003 |
 | QLT-04 | Production runs on **Microsoft Azure**: Static Web Apps (frontend), App Service on Linux (API), Azure Database for PostgreSQL Flexible Server, Key Vault (secrets), provisioned manually in the Portal. | Confirmed | ADR-001 |
@@ -153,8 +158,8 @@ them. Quotes below keep their original language.
 | MS-02 | **Milestone 2 — Azure Deployment** (SPEC-002): one Azure environment, runbook, HTTPS, secrets, alerts, backup drill, budget alert. Follows SPEC-001; no real family data. | Proposal | SPEC-002 (draft v0.1.0) |
 | MS-03 | Each later user-facing capability (authentication, albums, uploads and so on) gets its **own numbered specification**. | Confirmed | SPEC-001 §13 |
 | MS-04 | Authentication and family membership must come before any real family data is deployed. | Confirmed | ADR-001; SPEC-002 §9 |
-| MS-05 | Proposed order after Milestone 2, for maintainer review: (1) authentication, family and membership; (2) photo upload and renditions, including the storage design; (3) photo posts and timeline; (4) event albums; (5) original-photo download. The S draft lists these as deferred work without an order. | Proposal | S (deferred list); this document (ordering) |
-| MS-06 | The final number and order of milestones after Milestone 2. | Open | OQ-P17 |
+| MS-05 | Order after Milestone 2: **M3** authentication, family and invite links; **M4** photo upload and renditions, including the storage design; **M5** photo posts and timeline, with comments and reactions; **M6** event albums; **M7** original-photo download. Real family data can be used from M4 onward, once M3 is in place (PRV-02). Each milestone still needs its own approved specification (MS-03). | Confirmed | M (OQ-P17: "Auth → Upload → Timeline → Albums → Download"); S (deferred list) |
+| MS-06 | Where notifications (CAP-13), search and filter (CAP-14) and a possible video capability (CAP-10) fit after M7 or inside M5–M7. | Open | OQ-P17 |
 
 ## 12. Open questions
 
@@ -165,18 +170,18 @@ them. Quotes below keep their original language.
 | OQ-P03 | **Partly resolved 2026-11-27:** roles are Admin and Member (USR-04). Still open: how many Admins, how a Member becomes an Admin, and how the first Admin is created. | USR-04 … USR-07 |
 | OQ-P04 | **Partly resolved 2026-11-27:** members join through an Admin-generated, expiring, revocable invite link (FAM-03). Still open: is the link single-use, how long is it valid, which sign-in method is used, and how is an account recovered? | FAM-03 … FAM-05 |
 | OQ-P05 | **Partly resolved 2026-11-27:** a departed member's content stays, attributed to them (FAM-07). Still open: can that content be deleted later, and by whom? | FAM-07, FAM-08 |
-| OQ-P06 | What did interview option C (sharing and access control) say? Is any sharing outside the family allowed? Is visibility finer than the family needed? | PRV-05, PRV-06 |
+| OQ-P06 | **Partly resolved 2026-11-27:** no sharing outside the family (PRV-05). Still open: is visibility finer than the family needed (per album, per post)? The text of interview option C is only of historical interest now. | PRV-05, PRV-06 |
 | OQ-P07 | What did interview option A (photo storage and operating cost) say? What is the monthly budget? | QLT-05 |
 | OQ-P08 | What did interview option D (phone experience) say? | UX-03 |
 | OQ-P09 | **Resolved 2026-11-27:** photos only in the first media specification; video possibly later (CAP-10). | CAP-10 |
 | OQ-P10 | **Resolved 2026-11-27:** comments and reactions are in scope (CAP-11, CAP-12); tagging people is out of scope for now (OUT-05). | CAP-11, CAP-12, OUT-05 |
-| OQ-P11 | Are search, notifications, face recognition, photo metadata and location, slideshows, printing, duplicate detection or camera-roll sync in scope? | CAP-13 |
+| OQ-P11 | **Partly resolved 2026-11-27:** notifications and search are in scope (CAP-13, CAP-14); photo date/location metadata and slideshows are out for now (OUT-06). Still open: face recognition, printing, duplicate detection, camera-roll sync. | CAP-13 … CAP-15, OUT-06 |
 | OQ-P12 | **Partly resolved 2026-11-27:** JPEG, PNG and HEIC, up to 25 MB per photo (CAP-01). Still open: how many photos per upload, and which rendition sizes and output format are produced? | CAP-01, CAP-02 |
-| OQ-P13 | What numbers define "medium scale" (members, families, photos per year, storage)? | QLT-01 |
+| OQ-P13 | **Resolved 2026-11-27:** up to 50 members and about 10,000 photos a year (QLT-01). | QLT-01, QLT-01a |
 | OQ-P14 | **Partly resolved 2026-11-27:** Vietnamese UI at launch, ready for translation (QLT-08). Still open: which browsers and devices are supported, and what accessibility level is required? | QLT-08, QLT-09 |
 | OQ-P15 | Which Azure region holds the data? What are the rules for encryption, deletion, retention, backups and metadata privacy? Who administers the Azure subscription? | PRV-04, PRV-07; SPEC-002 OQ-201 |
 | OQ-P16 | Where is the approved mockup, and can it be added to the repository? | UX-02; DES-005 |
-| OQ-P17 | What is the order of milestones after Milestone 2? | MS-05, MS-06 |
+| OQ-P17 | **Partly resolved 2026-11-27:** M3 auth → M4 upload → M5 timeline → M6 albums → M7 download (MS-05). Still open: where notifications, search and video fit. | MS-05, MS-06 |
 
 ## 13. Superseded decisions
 
@@ -190,3 +195,4 @@ them. Quotes below keep their original language.
 |---|---|---|
 | 2026-11-27 | 0.1.0 | First baseline, drafted from the 2026-11-27 product-evidence export (EV: sources P, U, S, committed under `sources/`) and the approved or accepted repository documents. Includes maintainer decisions M on OQ-P02 (one family per deployment), OQ-P03 (Admin and Member roles), OQ-P04 (invite links) and OQ-P09 (photos only for now). Pending maintainer review. |
 | 2026-11-27 | 0.1.0 | Second round of maintainer decisions M, before review: OQ-P05 (a departed member's content stays), OQ-P10 (comments and reactions in scope, tagging out for now), OQ-P12 (JPEG, PNG, HEIC up to 25 MB) and OQ-P14 (Vietnamese UI, translation-ready). Version unchanged because 0.1.0 has not been reviewed yet. |
+| 2026-11-27 | 0.1.0 | Third round of maintainer decisions M, before review: OQ-P06 (no sharing outside the family), OQ-P11 (notifications and search in; photo date/location metadata and slideshows out for now), OQ-P13 (up to 50 members, about 10,000 photos a year) and OQ-P17 (milestones M3 auth → M4 upload → M5 timeline → M6 albums → M7 download). |
