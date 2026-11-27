@@ -10,15 +10,15 @@ docs/
 ├── SDD-DOCUMENT-REGISTER.md        # living documentation inventory (status source of truth)
 ├── specs/
 │   ├── 001-project-foundation/
-│   │   ├── spec.md                 # SPEC-001 v1.1.0, approved (Azure amendment, PR #19)
+│   │   ├── spec.md                 # SPEC-001 v1.1.0 approved; v1.2.0 amendment pending
 │   │   ├── plan.md                 # draft v0.1; not approved
 │   │   ├── tasks.md                # empty placeholder; deferred until plan approval
 │   │   └── checklists/
 │   │       └── requirements.md     # approval recorded; audit items remain open
 │   └── 002-azure-deployment/
-│       └── spec.md                 # SPEC-002 v0.1.0, draft; not approved
+│       └── spec.md                 # SPEC-002 v0.1.1, draft; not approved
 ├── architecture/
-│   ├── backend-design.md           # empty placeholder
+│   ├── backend-design.md           # backend design v0.1.0, draft; pending review
 │   ├── frontend-design.md          # empty placeholder
 │   └── technical-design.md         # empty placeholder
 ├── product/
@@ -53,12 +53,14 @@ local foundation. Local development needs no Azure account and no public exposur
 ## Current Milestone 1 state (2026-11-27)
 
 - SPEC-001: v1.1.0 **Approved** by maintainer (2026-11-27, confirmed by merging PR #19); v1.0.0 approved
-  2026-11-11.
+  2026-11-11. v1.2.0 amendment (health routes under `/api`) pending approval (issue #3).
 - SPEC-002 Azure Deployment: **Draft**; follows SPEC-001.
-- `plan.md`: **Draft v0.1**; .NET/database/toolchain proposals require reconciliation.
+- `plan.md`: **Draft v0.1**; backend stack aligned with the Backend Design; frontend, OS, local infrastructure and
+  CI choices still require reconciliation.
 - Product Requirements: **Approved v1.0.0** by maintainer (2026-11-27, issue #2, PR #34).
-- Backend Design, Frontend Design and Technical Design Document: **placeholder files exist but are empty
-  (0 bytes)**; content has not been exported yet.
+- Backend Design: **Draft v0.1.0**, pending maintainer review (issue #3).
+- Frontend Design and Technical Design Document: **placeholder files exist but are empty (0 bytes)**; content
+  has not been exported yet.
 - `tasks.md`: **Not started** (empty placeholder). Do not implement code from the draft plan.
 - Work is tracked in the GitHub milestone *Milestone 1 - Project Foundation (SPEC-001)*; see tracking issue
   [#17](https://github.com/developzoneio/family-memories/issues/17).

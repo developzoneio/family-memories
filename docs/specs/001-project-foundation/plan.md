@@ -2,7 +2,7 @@
 
 > **Project:** Family Memories  
 > **Milestone:** 1 — Project Foundation & Local Development  
-> **Source of truth:** [`spec.md`](./spec.md) — SPEC-001, approved by project maintainer on 2026-11-11  
+> **Source of truth:** [`spec.md`](./spec.md) — SPEC-001 v1.2.0 (v1.1.0 approved 2026-11-27; v1.2.0 health-route amendment pending)  
 > **Status:** Planning draft v0.1 — technical stack/assumptions require alignment with prior Backend and Frontend Designs  
 > **Last updated:** 2026-11-27  
 > **Planning rule:** Do not implement product features excluded by SPEC-001. Changes to observable requirements must be made in `spec.md` first.
@@ -15,23 +15,23 @@ In scope: project layout, developer bootstrap, configuration, health checks, emp
 
 ## 2. Technology decisions — proposed, not yet ratified
 
-These are engineering proposals, not decisions established by SPEC-001. Check them against the previous technical design; if that design differs, preserve the prior decision or document an explicit Architecture Decision Record (ADR).
+Backend rows marked **Decided** are recorded in the [Backend Design](../../architecture/backend-design.md) (DES-002, issue #3). The other rows are engineering proposals, not decisions established by SPEC-001. Check them against the previous technical design; if that design differs, preserve the prior decision or document an explicit Architecture Decision Record (ADR).
 
 | Area | Proposed choice | Rationale / restriction |
 |---|---|---|
 | Repository | GitHub monorepo | One PR validates backend, frontend and infra together. |
-| Backend | ASP.NET Core on .NET 10 LTS | Supported LTS baseline as of Nov 2026; use existing approved .NET version if different. |
-| Backend style | Modular-monolith-ready, minimal initial API | Avoid premature domain modules and abstractions in foundation scope. |
-| Database | PostgreSQL 17, if not already selected | Relational store with local container support; honor earlier Backend Design. |
-| Data layer | EF Core migrations with Npgsql, if PostgreSQL | Enables explicit, repeatable baseline migration. Match provider major versions to runtime. |
+| Backend | **Decided:** ASP.NET Core on .NET 10 LTS | Supported until 2028-11-14. Backend Design STK-01, STK-02. |
+| Backend style | **Decided:** Clean Architecture (Domain, Application, Infrastructure, Api) | Modules are folders inside each layer; Domain and Application stay empty in SPEC-001. Backend Design ARC-01 … ARC-07. |
+| Database | **Decided:** PostgreSQL 18 | GA on Azure Database for PostgreSQL Flexible Server. Backend Design STK-03. |
+| Data layer | **Decided:** EF Core 10 with Npgsql; EF Core migrations applied by an explicit command | Never at startup. Backend Design STK-05, STK-06, DAT-05. |
 | Frontend | React + TypeScript + Vite | Responsive browser-first app, fast local developer feedback. Match existing Frontend Design. |
 | Styling | Existing approved UI/style system | Do not substitute a new design library or mockup; implement only minimal approved shell. |
 | Local infrastructure | Docker Compose for database; frontend/API run with toolchain | DB reproducibility and source-level debugging; no public router configuration. |
 | Development OS | Windows 11 + WSL2 or Linux (select one primary target) | Acceptance requires one tested, documented environment. |
 | CI | GitHub Actions | Pull-request checks without personal credentials. |
-| Backend tests | xUnit and ASP.NET Core integration-test tooling | Tests for status semantics, readiness failure, and no sensitive output. |
+| Backend tests | xUnit, `WebApplicationFactory`, Testcontainers (PostgreSQL 18) — proposed in Backend Design STK-07 | Tests for status semantics, readiness failure, and no sensitive output. |
 | Frontend tests | Vitest / React Testing Library; Playwright browser smoke tests | Validate placeholder behavior, outage resilience and 360/1280 layouts. |
-| Production hosting (context only) | Microsoft Azure — decided in ADR-001; specified in SPEC-002 | Not built in SPEC-001. Keep choices compatible: Azure Database for PostgreSQL Flexible Server supports PostgreSQL 17, App Service on Linux offers .NET 10 (LTS), and Static Web Apps proxies a linked API only under `/api`. |
+| Production hosting (context only) | Microsoft Azure — decided in ADR-001; specified in SPEC-002 | Not built in SPEC-001. Keep choices compatible: Azure Database for PostgreSQL Flexible Server supports PostgreSQL 18, App Service on Linux offers .NET 10 (LTS), and Static Web Apps proxies a linked API only under `/api`. |
 
 **Version policy:** lock SDK/toolchain versions in tracked manifests (`global.json`, frontend lockfile, image major/digest as appropriate); use current security patches. Do not infer precise packages from this draft until version compatibility is checked.
 
@@ -45,8 +45,8 @@ React + Vite (local browser shell)
         | optional, read-only health request
         v
 ASP.NET Core API (localhost)
-        |  /health/live : process liveness only
-        |  /health/ready: DB dependency check
+        |  /api/health/live : process liveness only
+        |  /api/health/ready: DB dependency check
         v
 EF Core DbContext / database health checker
         |
@@ -58,7 +58,7 @@ For local development, bind DB and API to loopback when feasible. The Vite proxy
 
 ### Backend responsibilities
 
-- API process hosts `GET /health/live` and `GET /health/ready` only (plus non-sensitive development diagnostics if necessary).
+- API process hosts `GET /api/health/live` and `GET /api/health/ready` only (plus non-sensitive development diagnostics if necessary).
 - Liveness does **not** depend on the database; return 200 with a minimal JSON status while HTTP server runs.
 - Readiness checks database connectivity, returns 200 when ready, 503 on failure. Do not expose raw database errors, hostnames, server/version metadata, or connection strings in the response.
 - Logs may include correlation ID and bounded exception classification; redact sensitive values.
@@ -82,11 +82,14 @@ family-memories/
 ├── FamilyMemories.sln
 ├── src/
 │   ├── backend/
-│   │   ├── FamilyMemories.Api/
-│   │   └── FamilyMemories.Infrastructure/  # DbContext/migrations if needed
+│   │   ├── FamilyMemories.Domain/          # Clean Architecture layers (Backend Design ARC-03)
+│   │   ├── FamilyMemories.Application/
+│   │   ├── FamilyMemories.Infrastructure/  # DbContext, migrations
+│   │   └── FamilyMemories.Api/
 │   └── frontend/                       # React + TypeScript
 ├── tests/
-│   ├── backend/FamilyMemories.Api.Tests/
+│   ├── backend/FamilyMemories.UnitTests/
+│   ├── backend/FamilyMemories.IntegrationTests/
 │   └── frontend/                      # may live under frontend per toolchain
 ├── infra/
 │   └── compose.dev.yml                # database only; durable volume
@@ -113,8 +116,8 @@ The structure is illustrative until compared with the existing technical designs
 
 | Method / route | Normal response | Dependency unavailable | Behavior |
 |---|---|---|---|
-| `GET /health/live` | HTTP 200, `{ "status": "healthy" }` | Still HTTP 200 if API itself serves HTTP | Checks process only |
-| `GET /health/ready` | HTTP 200, `{ "status": "healthy" }` | HTTP 503, `{ "status": "unhealthy" }` | Requires successful database check |
+| `GET /api/health/live` | HTTP 200, `{ "status": "healthy" }` | Still HTTP 200 if API itself serves HTTP | Checks process only |
+| `GET /api/health/ready` | HTTP 200, `{ "status": "healthy" }` | HTTP 503, `{ "status": "unhealthy" }` | Requires successful database check |
 
 Responses must be small, machine-readable, and constant-shape. All payloads must exclude credentials, hostnames, connection strings, stack traces, database names, and internal topology. Avoid exposing detailed exception messages through frontend status widgets.
 
@@ -190,7 +193,7 @@ These are planning slices, **not executable tasks**. Generate `tasks.md` only af
 | ID | Risk / pending decision | Proposed mitigation / approval required |
 |---|---|---|
 | OQ-001 | Existing Milestone 1 TDD may include authentication or family management | Keep SPEC-001 foundation-only; propose separate specs for additional capabilities. Compare against TDD before plan approval. |
-| OQ-002 | .NET, database, data access, styling may conflict with earlier designs | Review existing Backend and Frontend Design, record actual approved stack; if changing, create ADR. |
+| OQ-002 | .NET, database, data access, styling may conflict with earlier designs | **Backend part resolved 2026-11-27** in the Backend Design (.NET 10, PostgreSQL 18, EF Core 10 migrations, Clean Architecture). Styling remains with the Frontend Design. |
 | OQ-003 | Primary developer OS not designated | Choose Windows/WSL2 or Linux; validate clean checkout and tool prerequisites. |
 | OQ-004 | Container vs native local DB undecided | Proposed Docker Compose DB, native SDK dev servers; approve or replace consistently. |
 | OQ-005 | CI provider unconfirmed | Proposed GitHub Actions for GitHub repo; approve or replace. |
@@ -198,7 +201,7 @@ These are planning slices, **not executable tasks**. Generate `tasks.md` only af
 | R-002 | Commit of secrets or private photos | `.gitignore`, examples only, secret scan and fixture audit. |
 | R-003 | CI passes while clean-machine startup fails | Run separate documented clean-checkout acceptance on supported OS. |
 | R-004 | Overengineering foundation with future product modules | Defer domain model, authorization and object storage to subsequent specs. |
-| R-005 | Local foundation choices that do not carry over to Azure (ADR-001) | Resolve SPEC-002 OQ-209 (SPEC-001 `/health/*` routes versus the SWA `/api/*` proxy) before implementing the health endpoints and the Vite proxy path; read all configuration from environment variables so App Service settings and Key Vault references work unchanged; keep migrations as an explicit command that can run against Azure. |
+| R-005 | Local foundation choices that do not carry over to Azure (ADR-001) | SPEC-002 OQ-209 is resolved: health routes are `/api/health/*` (SPEC-001 v1.2.0), and the Vite dev proxy forwards `/api`; read all configuration from environment variables so App Service settings and Key Vault references work unchanged; keep migrations as an explicit command that can run against Azure. |
 
 ### Approval gate for this plan
 

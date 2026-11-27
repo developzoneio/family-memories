@@ -3,10 +3,10 @@
 > **Project:** Family Memories  
 > **Milestone:** 1 — Foundation (proposed first increment)  
 > **Feature branch:** `feature/001-project-foundation`  
-> **Status:** Approved v1.1.0 — project maintainer, 2026-11-27 (confirmed by merging PR #19). v1.0.0 approved
-> 2026-11-11 (confirmed in chat); v1.1.0 adds the hosting amendment per
-> [ADR-001](../../adr/ADR-001-azure-deployment-target.md)  
-> **Version:** 1.1.0 (deployment target changed to Azure; local-foundation behavior unchanged)  
+> **Status:** v1.2.0 amendment **pending approval** (health routes moved under `/api`; issue #3). v1.1.0 approved
+> by the project maintainer 2026-11-27 (confirmed by merging PR #19); v1.0.0 approved 2026-11-11 (confirmed in
+> chat). v1.1.0 added the hosting amendment per [ADR-001](../../adr/ADR-001-azure-deployment-target.md)  
+> **Version:** 1.2.0 (health routes `/api/health/live` and `/api/health/ready`; other behavior unchanged)  
 > **Created:** 2026-11-11  
 > **Specification owner:** Project maintainer
 
@@ -56,9 +56,9 @@ As a developer/operator, I want to distinguish a running API process from an API
 
 **Acceptance scenarios**
 
-1. **Given** the API process is serving HTTP, **when** I request `GET /health/live`, **then** I receive HTTP 200 and a minimal machine-readable status response that does not expose secrets.
-2. **Given** the API and required database dependency are operational, **when** I request `GET /health/ready`, **then** I receive HTTP 200 with a minimal ready status.
-3. **Given** the database is unavailable but the API process remains running, **when** I request `GET /health/ready`, **then** I receive HTTP 503; `GET /health/live` continues to report the process as live.
+1. **Given** the API process is serving HTTP, **when** I request `GET /api/health/live`, **then** I receive HTTP 200 and a minimal machine-readable status response that does not expose secrets.
+2. **Given** the API and required database dependency are operational, **when** I request `GET /api/health/ready`, **then** I receive HTTP 200 with a minimal ready status.
+3. **Given** the database is unavailable but the API process remains running, **when** I request `GET /api/health/ready`, **then** I receive HTTP 503; `GET /api/health/live` continues to report the process as live.
 4. **Given** either health endpoint is called, **when** the response is returned, **then** it contains no credentials, database connection strings, internal stack traces, or sensitive infrastructure detail.
 
 ### US-003 — Safe, repeatable configuration and persistence (P1)
@@ -101,8 +101,8 @@ All MUST requirements are in scope for acceptance of SPEC-001.
 |---|---|---|
 | FR-001 | The repository MUST document prerequisites, setup, startup, shutdown, test, and troubleshooting procedures. | US-001 |
 | FR-002 | A developer MUST be able to start the frontend, backend, and required local dependencies using documented, repeatable commands. No manually pre-provisioned paid/cloud service MUST be required for local acceptance. | US-001 |
-| FR-003 | The backend MUST provide `GET /health/live`; an active API process returns HTTP 200 regardless of database readiness. | US-002 |
-| FR-004 | The backend MUST provide `GET /health/ready`; it returns HTTP 200 when required dependencies are ready and HTTP 503 when any required dependency is not ready. | US-002 |
+| FR-003 | The backend MUST provide `GET /api/health/live`; an active API process returns HTTP 200 regardless of database readiness. | US-002 |
+| FR-004 | The backend MUST provide `GET /api/health/ready`; it returns HTTP 200 when required dependencies are ready and HTTP 503 when any required dependency is not ready. | US-002 |
 | FR-005 | Health responses MUST avoid credentials, stack traces, database names/hosts, and internal topology. | US-002 |
 | FR-006 | The repository MUST provide safe configuration examples; runtime secrets and local personal/family data MUST remain untracked. | US-003 |
 | FR-007 | The local development workflow MUST provide a documented, repeatable mechanism to initialize/upgrade the database to the project's baseline schema version. | US-003 |
@@ -133,8 +133,8 @@ These contracts are part of this specification; payload schemas beyond minimal s
 
 | Contract | Successful result | Unavailable result |
 |---|---|---|
-| `GET /health/live` | HTTP 200 when API HTTP process is operational | Connection failure if process is not serving |
-| `GET /health/ready` | HTTP 200 when required dependencies are healthy | HTTP 503 if a required dependency fails |
+| `GET /api/health/live` | HTTP 200 when API HTTP process is operational | Connection failure if process is not serving |
+| `GET /api/health/ready` | HTTP 200 when required dependencies are healthy | HTTP 503 if a required dependency fails |
 | Frontend shell | Renders app branding and honest placeholders | Still renders when backend-dependent optional checks fail |
 | Database initialization | Recorded baseline migration state; repeatable | Non-zero exit/actionable error if initialization fails |
 | Local/CI validation | Zero exit/status on all required checks | Non-zero exit/status if any required check fails |
@@ -213,3 +213,4 @@ SPEC-001 is complete only when:
 | 2026-11-11 | 1.0.0 | Approved baseline. |
 | 2026-11-26 | 1.0.0 | Administrative fix: feature branch name, Definition of Done approval checkbox (issue #1). |
 | 2026-11-27 | 1.1.0 | Deployment target changed from home self-hosting to Azure per ADR-001: §2 context, FR-014, §8 exclusions, AT-011. NFR-002 (local-only development) unchanged. Azure work moved to SPEC-002. |
+| 2026-11-27 | 1.2.0 | Health routes moved from `/health/live` and `/health/ready` to `/api/health/live` and `/api/health/ready` (US-002 scenarios, FR-003, FR-004, §7), because Azure Static Web Apps forwards only `/api/*` to the API. Resolves SPEC-002 OQ-209 and GAP-12. Status semantics unchanged. Maintainer decision in session (issue #3); pending confirmation through PR merge. |

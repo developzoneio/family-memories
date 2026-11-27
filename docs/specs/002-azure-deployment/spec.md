@@ -3,7 +3,7 @@
 > **Project:** Family Memories  
 > **Milestone:** 2 — Azure deployment (proposed; follows SPEC-001)  
 > **Status:** **Draft — not approved**  
-> **Version:** 0.1.0  
+> **Version:** 0.1.1  
 > **Created:** 2026-11-27  
 > **Specification owner:** Project maintainer  
 > **Decision basis:** [ADR-001](../../adr/ADR-001-azure-deployment-target.md)
@@ -24,7 +24,7 @@ and the Azure Portal runbook.
 - **Selected hosting direction (ADR-001):** Azure Static Web Apps (Standard) for the React frontend; Azure App Service on
   Linux for the ASP.NET Core API, linked to the static web app under `/api`; Azure Database for PostgreSQL Flexible
   Server; Azure Key Vault for secrets.
-- **Depends on SPEC-001:** a working frontend, API with `/health/live` and `/health/ready`, baseline migration and CI.
+- **Depends on SPEC-001:** a working frontend, API with `/api/health/live` and `/api/health/ready`, baseline migration and CI.
   Nothing can be deployed until SPEC-001 is implemented.
 
 ## 3. User stories (prioritized)
@@ -57,7 +57,7 @@ As a family member, I want to open the application over HTTPS from my phone or c
 1. **Given** the deployed environment, **when** I open the documented URL, **then** the shell loads over HTTPS and
    HTTP requests are redirected or refused.
 2. **Given** the deployed environment, **when** I call the liveness and readiness endpoints at their documented Azure
-   addresses, **then** they behave as in SPEC-001 FR-003 to FR-005 (route mapping: OQ-209).
+   addresses, **then** they behave as in SPEC-001 FR-003 to FR-005 (route mapping: OQ-209, resolved).
 
 ### US-204 — Keep secrets and data safe (P1)
 
@@ -144,7 +144,7 @@ real family data.
 | OQ-205 | Database network access: firewall rules for App Service outbound addresses, or private access through a virtual network? | Plan |
 | OQ-206 | How are migrations run against Azure: from a CI job, from the maintainer's machine through a temporary firewall rule, or a migration bundle? | Plan |
 | OQ-207 | Monitoring: App Service health check and Azure Monitor alerts, Application Insights, or both? | Plan |
-| OQ-209 | **Route conflict:** SPEC-001 FR-003/FR-004 fix the health routes at `/health/live` and `/health/ready`, but Static Web Apps forwards only `/api/*` to a linked App Service and passes the full path unchanged. Options: (a) the API also serves `/api/health/*`; (b) amend SPEC-001 so all API routes, including health, live under `/api`; (c) probe health on the App Service directly and use `/api` only for the frontend status check. Decide **before SPEC-001 is implemented**, because it changes an approved contract. | Maintainer |
+| OQ-209 | **Resolved 2026-11-27 (issue #3):** option (b). SPEC-001 v1.2.0 moves the health routes to `/api/health/live` and `/api/health/ready`; all API routes live under `/api`, and the App Service health check probes `/api/health/live`. Original question: SPEC-001 FR-003/FR-004 fix the health routes at `/health/live` and `/health/ready`, but Static Web Apps forwards only `/api/*` to a linked App Service and passes the full path unchanged. Options: (a) the API also serves `/api/health/*`; (b) amend SPEC-001 so all API routes, including health, live under `/api`; (c) probe health on the App Service directly and use `/api` only for the frontend status check. Decide **before SPEC-001 is implemented**, because it changes an approved contract. | Maintainer |
 | OQ-208 | Static Web Apps limits a linked-backend request to 45 seconds. How will future large photo uploads avoid it (for example direct upload to Blob Storage)? Record for the media spec. | Plan / media spec |
 
 ## 9. Dependencies
