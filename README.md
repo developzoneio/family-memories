@@ -10,7 +10,7 @@ docs/
 ├── SDD-DOCUMENT-REGISTER.md        # living documentation inventory (status source of truth)
 ├── specs/
 │   ├── 001-project-foundation/
-│   │   ├── spec.md                 # SPEC-001 v1.1.0 (v1.0.0 approved; Azure amendment pending)
+│   │   ├── spec.md                 # SPEC-001 v1.1.0, approved (Azure amendment, PR #19)
 │   │   ├── plan.md                 # draft v0.1; not approved
 │   │   ├── tasks.md                # empty placeholder; deferred until plan approval
 │   │   └── checklists/

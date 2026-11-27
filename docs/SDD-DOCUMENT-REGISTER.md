@@ -1,7 +1,7 @@
 # Family Memories — SDD Document Register & Generation Checklist
 
 > **Document ID:** SDD-REG-001  
-> **Version:** 1.3.0  
+> **Version:** 1.3.1  
 > **Last updated:** 2026-11-27  
 > **Owner:** Project maintainer  
 > **Status:** Active — Step 2 reconciled (Reviewed with Open Gaps)  
@@ -36,7 +36,7 @@ This document is the **single inventory and generation checklist** for Family Me
 | GOV-001 | Project SDD README | `README.md` | Exists (GitHub; content) | Active — references aligned | Document tree and Milestone 1 state synchronized with this register (2026-11-26, issue #1); GAP-01/GAP-02 closed. |
 | GOV-003 | Docs navigation page | `docs/README.md` | Exists (GitHub; content) | Active — navigation only | Rewritten as a link index with no status of its own; points to this register (2026-11-26, issue #1). |
 | GOV-002 | **SDD Document Register** | `docs/SDD-DOCUMENT-REGISTER.md` | Exists (GitHub; content) | Active — Step 2 reviewed | This register records DR-001/DR-002 and open gaps; it is not proof that underlying designs were reconciled in full. |
-| SDD-001 | SPEC-001 requirements | `docs/specs/001-project-foundation/spec.md` | Exists (GitHub; content) | **Approved v1.0.0 (2026-11-11); v1.1.0 amendment pending confirmation** | Checklist audit remains pending. 2026-11-26 administrative fix (branch name, approval checkbox). 2026-11-27 v1.1.0: deployment target changed to Azure per ADR-001 (§2, FR-014, §8, AT-011); confirmation recorded by merging the PR. |
+| SDD-001 | SPEC-001 requirements | `docs/specs/001-project-foundation/spec.md` | Exists (GitHub; content) | **Approved v1.1.0 (2026-11-27, PR #19 merge); v1.0.0 approved 2026-11-11** | Checklist audit remains pending. 2026-11-26 administrative fix (branch name, approval checkbox). 2026-11-27 v1.1.0: deployment target changed to Azure per ADR-001 (§2, FR-014, §8, AT-011); confirmed by merging PR #19 (2026-11-27). |
 | SDD-002 | SPEC-001 review checklist | `docs/specs/001-project-foundation/checklists/requirements.md` | Exists (GitHub; content) | Scope approval recorded; audit open | Individual unchecked attestations are not approved by implication. Next-artifact path corrected to `docs/specs/` (2026-11-26). |
 | SDD-003 | SPEC-001 technical plan | `docs/specs/001-project-foundation/plan.md` | Exists (GitHub; content) | **Draft — not approved** | Existing planning draft, not ratified. 2026-11-26: only the section 4 repository tree was corrected to place SDD documents under `docs/` (DR-001); no technology or scope change. |
 | SDD-004 | SPEC-001 implementation tasks | `docs/specs/001-project-foundation/tasks.md` | **Placeholder (0 bytes)** | Not started | Empty file is not a task breakdown; do not populate before plan approval. |
@@ -196,7 +196,7 @@ This sequence avoids instructing Codex to reconcile against nonexistent local fi
 | DOC-02 | Backend Design | `docs/architecture/backend-design.md` (0 bytes) | Unverified | Verify architecture/stack from full design source |
 | DOC-03 | Frontend Design | `docs/architecture/frontend-design.md` (0 bytes) | Partial Approved / Unverified | Preserve approved React/browser mockup; verify detailed choices |
 | DOC-04 | Technical Design | `docs/architecture/technical-design.md` (0 bytes) | Unverified | Verify original Milestone 1 boundary |
-| DOC-05 | SPEC-001 | `docs/specs/001-project-foundation/spec.md` (content) | Approved v1.0.0; v1.1.0 hosting amendment pending confirmation | Keep approved scope; audit checklist separately |
+| DOC-05 | SPEC-001 | `docs/specs/001-project-foundation/spec.md` (content) | Approved v1.1.0 (hosting amendment confirmed 2026-11-27, PR #19) | Keep approved scope; audit checklist separately |
 | DOC-06 | Technical Plan | `docs/specs/001-project-foundation/plan.md` (content) | Draft | No approval; no implementation |
 | DOC-07 | Requirements checklist | Existing file with unchecked items | Scope approval recorded; audit pending | Retain audit items |
 | DOC-08 | SDD Document Register | Existing file; this review synchronized | Active | Track open gaps and future evidence |
@@ -241,6 +241,7 @@ Each gap is tracked as a GitHub issue; see tracking issue
 |---|---|---|---|
 | 2026-11-11 | 1.0.0 | Initial register generated; inventoried SPEC-001, plan, checklist, README; synchronized administrative approval metadata and flagged chat-only Backend/Frontend/TDD and pending deliverables. | User request to introduce an SDD-generated-document checklist; SPEC-001 approval stated in chat. |
 | 2026-11-11 | 1.1.0 | Synchronized DR-001/DR-002 and Step 2 Final Review; verified remote file inventory, canonical mapping, matrix and open gaps. | Explicit project maintainer approvals in chat; GitHub remote branch inspection. |
-| 2026-11-27 | 1.3.0 | Added ADR-001 (Azure replaces home self-hosting; accepted) and SPEC-002 Azure Deployment (draft v0.1.0). Amended SPEC-001 to v1.1.0 (§2, FR-014, §8, AT-011; pending confirmation through PR merge); updated draft plan (hosting context row, AT-011, R-005); added DR-003, GAP-12, GAP-13 and a Gate B item; superseded "home self-hosting" in confirmed context. | Maintainer decisions in session 2026-11-27: Azure replaces home; new SPEC-002; App Service + Static Web Apps + PostgreSQL Flexible Server + Key Vault; manual Portal provisioning. |
 | 2026-11-26 | 1.2.0 | Closed GAP-01/GAP-02: fixed legacy `specs/` paths (root README, `docs/README.md`, checklist, plan section 4 tree); rewrote `docs/README.md` as a navigation page (GOV-003); synced root README status; administrative SPEC-001 fixes (branch name, approval checkbox) with version kept at 1.0.0; linked tracking issue #17. | GitHub issue #1; maintainer decisions in session (navigation page, no spec version bump, fix plan tree in #1). |
+| 2026-11-27 | 1.3.0 | Added ADR-001 (Azure replaces home self-hosting; accepted) and SPEC-002 Azure Deployment (draft v0.1.0). Amended SPEC-001 to v1.1.0 (§2, FR-014, §8, AT-011; pending confirmation through PR merge); updated draft plan (hosting context row, AT-011, R-005); added DR-003, GAP-12, GAP-13 and a Gate B item; superseded "home self-hosting" in confirmed context. | Maintainer decisions in session 2026-11-27: Azure replaces home; new SPEC-002; App Service + Static Web Apps + PostgreSQL Flexible Server + Key Vault; manual Portal provisioning. |
+| 2026-11-27 | 1.3.1 | Recorded SPEC-001 v1.1.0 as approved: the maintainer merged PR #19, which is the confirmation step stated in 1.3.0. Updated the SPEC-001 header, SDD-001, DOC-05 and the root README; the scope-approval DoD box now applies to v1.1.0. No requirement change. Restored chronological order of history rows. | PR #19 merged 2026-11-27 by the maintainer; maintainer decision in session 2026-11-27. |
 
