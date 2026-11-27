@@ -36,7 +36,7 @@ known, the details are listed as Open.
 | ADR-001 | [ADR-001 Azure deployment target](../adr/ADR-001-azure-deployment-target.md) | Accepted, 2026-11-27 | Maintainer decision. |
 | SPEC-002 | [SPEC-002 Azure Deployment](../specs/002-azure-deployment/spec.md) | Draft v0.1.0 | Not approved. Supports **Proposal** labels only. |
 | PLAN-001 | [SPEC-001 technical plan](../specs/001-project-foundation/plan.md) | Draft v0.1 | Not approved. Supports **Proposal** labels only. |
-| M | Maintainer decisions in the Claude Code session that drafted this document | 2026-11-27 | Answers to OQ-P02, OQ-P03, OQ-P04 and OQ-P09, chosen from offered options. The option wording is quoted in the rows that cite M. |
+| M | Maintainer decisions in the Claude Code session that drafted this document | 2026-11-27 | Answers to OQ-P02, OQ-P03, OQ-P04, OQ-P05, OQ-P09, OQ-P10, OQ-P12 and OQ-P14, chosen from offered options. The option wording is quoted in the rows that cite M. |
 | EV | [Product-evidence export](sources/family-memories-product-evidence.md) | 2026-11-27 | ChatGPT export with verbatim quotes for P, U and S. Evidence IDs such as PRD-F02 refer to this file. |
 
 **Source limitation.** Sources P, U and S were recovered through the product-evidence export (EV), produced by
@@ -78,7 +78,8 @@ them. Quotes below keep their original language.
 | FAM-04 | There is no open self-registration: an account can only be created through a valid invite link. | Proposal | This document; follows from FAM-03 |
 | FAM-05 | Whether an invite link is single-use, how long it stays valid, the sign-in method, and account recovery. | Open | OQ-P04 |
 | FAM-06 | Sub-groups within the family, such as households or branches. | Open | OQ-P02 |
-| FAM-07 | Removing a member or leaving a family, and what happens to that member's content. | Open | OQ-P05 |
+| FAM-07 | When a member is removed or leaves, their account **loses access**, but the posts and photos they uploaded **stay** in the family's timeline and albums, still attributed to them. | Confirmed | M (OQ-P05: "Content stays") |
+| FAM-08 | Whether a departed member's content can still be deleted later, and by whom (for example on the member's request or by an Admin). | Open | OQ-P05 |
 
 ## 6. Privacy and access model
 
@@ -96,8 +97,8 @@ them. Quotes below keep their original language.
 
 | ID | Capability | Label | Source | Details still Open |
 |---|---|---|---|---|
-| CAP-01 | **Manual photo upload** by family members. | Confirmed | P: "C. Upload: manual"; SPEC-001 §2 | Batch upload, retry, allowed formats and size limits (OQ-P12). |
-| CAP-02 | Each photo is kept as an **original** and an **optimized rendition**. | Confirmed | P: "A. Chất lượng ảnh: both"; SPEC-001 §2 | Rendition sizes, compression and thumbnails (OQ-P12). |
+| CAP-01 | **Manual photo upload** by family members. Accepted formats: **JPEG, PNG and HEIC** (iPhone photos). Maximum **25 MB per photo**. | Confirmed | P: "C. Upload: manual"; SPEC-001 §2; M (OQ-P12: "JPEG, PNG, HEIC; 25 MB") | Batch size and retry behavior (OQ-P12). |
+| CAP-02 | Each photo is kept as an **original**, exactly as uploaded (including HEIC), and an **optimized rendition** in a format that browsers can display. | Confirmed | P: "A. Chất lượng ảnh: both"; SPEC-001 §2; M (OQ-P12) | Rendition sizes, output format, compression and thumbnails (OQ-P12). |
 | CAP-03 | **Photo posts**: members post photos day to day, like a social feed. | Confirmed | P: "Đăng ảnh hằng ngày giống Facebook." | Whether a post has a caption, can hold several photos, and can be edited or deleted. |
 | CAP-04 | **Family activity timeline** ("Xem dòng thời gian hoạt động của gia đình" — view the family activity timeline). | Confirmed | P; SPEC-001 §2 | Ordering, grouping, filtering and paging. |
 | CAP-05 | **Albums by event** ("Tạo album ảnh theo sự kiện (sinh nhật, tốt nghiệp, du lịch...)" — create albums by event: birthdays, graduations, travel). | Confirmed | P; SPEC-001 §2 ("albums/events") | Editing, deleting, ordering, cover photo; whether an event is separate from an album. |
@@ -106,7 +107,9 @@ them. Quotes below keep their original language.
 | CAP-08 | **Authentication and authorization.** | Confirmed (required) | SPEC-001 §6; ADR-001 | Sign-in method and recovery (OQ-P04). |
 | CAP-09 | **Invite links**: an Admin generates, sends and revokes expiring invite links. | Confirmed | M (OQ-P04) | Single use and validity period (FAM-05). |
 | CAP-10 | **Photos only** in the first media specification. Video is a possible later capability, not a permanent non-goal. | Confirmed | M (OQ-P09: "Photos only now") | When, or whether, video is added. |
-| CAP-11 | Comments, reactions and tagging people; search; notifications; face recognition; location and other photo metadata; slideshows; printing or photo books; duplicate detection and moderation; automatic camera-roll sync. | Open | — | Neither included nor excluded (OQ-P10, OQ-P11). |
+| CAP-11 | **Comments**: members can comment on a photo post. | Confirmed | M (OQ-P10) | Editing and deleting comments, and whether an Admin can remove them. |
+| CAP-12 | **Reactions**: members can react to a photo post. | Confirmed | M (OQ-P10) | A single "like" or a small set of emoji. |
+| CAP-13 | Search; notifications; face recognition; location and other photo metadata; slideshows; printing or photo books; duplicate detection and moderation; automatic camera-roll sync. | Open | — | Neither included nor excluded (OQ-P11). |
 
 ## 8. Out of scope
 
@@ -116,7 +119,8 @@ them. Quotes below keep their original language.
 | OUT-02 | **Home self-hosting** is no longer a deployment target. | Confirmed | ADR-001 (see Section 13) |
 | OUT-03 | The exclusions in SPEC-001 §8 and SPEC-002 §6 bound **those increments only**. Several excluded items are Confirmed later capabilities (CAP-01 … CAP-09); the others, such as external sharing and notifications, are Open. | Confirmed | SPEC-001 §2, §8, §13; SPEC-002 §6 |
 | OUT-04 | **Hosting several families in one deployment** is out of scope (FAM-01). | Confirmed | M (OQ-P02) |
-| OUT-05 | Any other permanent product exclusion. None was recorded; features without a decision stay Open (CAP-11) rather than out of scope. Video is deferred, not excluded (CAP-10). | Open | — |
+| OUT-05 | **Tagging people** in photos or posts is out of scope for now. It was not chosen with comments and reactions, and can be revisited by a new decision. | Confirmed | M (OQ-P10) |
+| OUT-06 | Any other permanent product exclusion. None was recorded; features without a decision stay Open (CAP-13) rather than out of scope. Video is deferred, not excluded (CAP-10). | Open | — |
 
 ## 9. Quality expectations and constraints
 
@@ -129,7 +133,8 @@ them. Quotes below keep their original language.
 | QLT-05 | Azure has a recurring monthly cost, so a budget and cost alerts are needed. The interview answer on storage and operating cost was option A ("Câu 4. Lưu trữ hình ảnh và chi phí vận hành => A"), whose text was not recovered. | Confirmed (the need) / Open (budget, option A) | ADR-001 (Consequences); P; OQ-P07 |
 | QLT-06 | Large original-photo uploads will probably need direct-to-storage upload (for example Azure Blob Storage), because requests proxied through Static Web Apps are limited to 45 seconds. To be decided in a media specification. | Proposal | ADR-001 (Consequences) |
 | QLT-07 | The backend is built with ASP.NET Core/.NET. | Proposal | SPEC-001 §2 ("working proposal"); S |
-| QLT-08 | Supported browsers and devices, performance targets, UI language(s) and accessibility (including for older relatives). | Open | OQ-P14 |
+| QLT-08 | The UI is in **Vietnamese** at launch. All UI text is kept in translation resources so that English (or another language) can be added later without code changes. | Confirmed | M (OQ-P14: "Vietnamese first, i18n-ready") |
+| QLT-09 | Supported browsers and devices, performance targets and accessibility (including for older relatives). | Open | OQ-P14 |
 
 ## 10. UI/UX baseline
 
@@ -159,16 +164,16 @@ them. Quotes below keep their original language.
 | OQ-P02 | **Partly resolved 2026-11-27:** one deployment serves one family (FAM-01). Still open: are there sub-groups such as households or branches? | FAM-01, FAM-06 |
 | OQ-P03 | **Partly resolved 2026-11-27:** roles are Admin and Member (USR-04). Still open: how many Admins, how a Member becomes an Admin, and how the first Admin is created. | USR-04 … USR-07 |
 | OQ-P04 | **Partly resolved 2026-11-27:** members join through an Admin-generated, expiring, revocable invite link (FAM-03). Still open: is the link single-use, how long is it valid, which sign-in method is used, and how is an account recovered? | FAM-03 … FAM-05 |
-| OQ-P05 | What happens when a member is removed or leaves, and to the content they posted? | FAM-07 |
+| OQ-P05 | **Partly resolved 2026-11-27:** a departed member's content stays, attributed to them (FAM-07). Still open: can that content be deleted later, and by whom? | FAM-07, FAM-08 |
 | OQ-P06 | What did interview option C (sharing and access control) say? Is any sharing outside the family allowed? Is visibility finer than the family needed? | PRV-05, PRV-06 |
 | OQ-P07 | What did interview option A (photo storage and operating cost) say? What is the monthly budget? | QLT-05 |
 | OQ-P08 | What did interview option D (phone experience) say? | UX-03 |
 | OQ-P09 | **Resolved 2026-11-27:** photos only in the first media specification; video possibly later (CAP-10). | CAP-10 |
-| OQ-P10 | Are comments, reactions or tagging people in scope? | CAP-11 |
-| OQ-P11 | Are search, notifications, face recognition, photo metadata and location, slideshows, printing, duplicate detection or camera-roll sync in scope? | CAP-11 |
-| OQ-P12 | Which photo formats (for example HEIC from phones), file sizes and batch sizes are allowed? Which rendition sizes are produced? | CAP-01, CAP-02 |
+| OQ-P10 | **Resolved 2026-11-27:** comments and reactions are in scope (CAP-11, CAP-12); tagging people is out of scope for now (OUT-05). | CAP-11, CAP-12, OUT-05 |
+| OQ-P11 | Are search, notifications, face recognition, photo metadata and location, slideshows, printing, duplicate detection or camera-roll sync in scope? | CAP-13 |
+| OQ-P12 | **Partly resolved 2026-11-27:** JPEG, PNG and HEIC, up to 25 MB per photo (CAP-01). Still open: how many photos per upload, and which rendition sizes and output format are produced? | CAP-01, CAP-02 |
 | OQ-P13 | What numbers define "medium scale" (members, families, photos per year, storage)? | QLT-01 |
-| OQ-P14 | Which browsers and devices are supported? Which UI language(s): Vietnamese, English or both? What accessibility level is required? | QLT-08 |
+| OQ-P14 | **Partly resolved 2026-11-27:** Vietnamese UI at launch, ready for translation (QLT-08). Still open: which browsers and devices are supported, and what accessibility level is required? | QLT-08, QLT-09 |
 | OQ-P15 | Which Azure region holds the data? What are the rules for encryption, deletion, retention, backups and metadata privacy? Who administers the Azure subscription? | PRV-04, PRV-07; SPEC-002 OQ-201 |
 | OQ-P16 | Where is the approved mockup, and can it be added to the repository? | UX-02; DES-005 |
 | OQ-P17 | What is the order of milestones after Milestone 2? | MS-05, MS-06 |
@@ -184,3 +189,4 @@ them. Quotes below keep their original language.
 | Date | Version | Change |
 |---|---|---|
 | 2026-11-27 | 0.1.0 | First baseline, drafted from the 2026-11-27 product-evidence export (EV: sources P, U, S, committed under `sources/`) and the approved or accepted repository documents. Includes maintainer decisions M on OQ-P02 (one family per deployment), OQ-P03 (Admin and Member roles), OQ-P04 (invite links) and OQ-P09 (photos only for now). Pending maintainer review. |
+| 2026-11-27 | 0.1.0 | Second round of maintainer decisions M, before review: OQ-P05 (a departed member's content stays), OQ-P10 (comments and reactions in scope, tagging out for now), OQ-P12 (JPEG, PNG, HEIC up to 25 MB) and OQ-P14 (Vietnamese UI, translation-ready). Version unchanged because 0.1.0 has not been reviewed yet. |
